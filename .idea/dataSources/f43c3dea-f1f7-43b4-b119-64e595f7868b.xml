@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - budget_db@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="budget_db">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="CarStore"/>
+    <schema id="3" name="information_schema"/>
+    <schema id="4" name="mysql"/>
+    <schema id="5" name="performance_schema"/>
+    <schema id="6" name="sys"/>
+    <schema id="7" name="Test"/>
+    <schema id="8" name="totalizator_db"/>
+    <table id="9" parent="1" name="cards"/>
+    <table id="10" parent="1" name="categories"/>
+    <table id="11" parent="1" name="hibernate_sequence"/>
+    <table id="12" parent="1" name="places"/>
+    <table id="13" parent="1" name="planned_records"/>
+    <table id="14" parent="1" name="records"/>
+    <table id="15" parent="1" name="role"/>
+    <table id="16" parent="1" name="schema_version"/>
+    <table id="17" parent="1" name="user"/>
+    <table id="18" parent="1" name="user_roles"/>
+    <column id="19" parent="9" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="20" parent="9" name="card_number">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="21" parent="9" name="cash">
+      <data-type>float|0</data-type>
+    </column>
+    <column id="22" parent="9" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="23" parent="9" name="FK8dixdf3xghrg9yet9w8ry5l9o">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="24" parent="9" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="25" parent="9" name="FK8dixdf3xghrg9yet9w8ry5l9o">
+      <columns>user_id</columns>
+      <ref-key>~.user.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="26" parent="10" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="27" parent="10" name="type">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="28" parent="10" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="29" parent="11" name="next_val">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="30" parent="12" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="31" parent="12" name="name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <key id="32" parent="12" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="33" parent="13" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="34" parent="13" name="paymentDayPos">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="35" parent="13" name="note">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="36" parent="13" name="startDate">
+      <mandatory>1</mandatory>
+      <data-type>date|0</data-type>
+    </column>
+    <column id="37" parent="13" name="sum">
+      <mandatory>1</mandatory>
+      <data-type>float|0</data-type>
+    </column>
+    <column id="38" parent="13" name="cards_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="39" parent="13" name="categories_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="40" parent="13" name="places_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="41" parent="13" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="42" parent="13" name="FKcowt15pyxh1s4x8aomut0ng41">
+      <columns>categories_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="43" parent="13" name="FKkldyusvu8s6gfi07kuj8t6j5f">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="44" parent="13" name="FKqgx29d7ixgsi3v562bb3o9y4m">
+      <columns>places_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="45" parent="13" name="FKr3ut7jntw6qe3arr0tw11sblq">
+      <columns>cards_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="46" parent="13" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="47" parent="13" name="FKr3ut7jntw6qe3arr0tw11sblq">
+      <columns>cards_id</columns>
+      <ref-key>~.cards.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="48" parent="13" name="FKcowt15pyxh1s4x8aomut0ng41">
+      <columns>categories_id</columns>
+      <ref-key>~.categories.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="49" parent="13" name="FKqgx29d7ixgsi3v562bb3o9y4m">
+      <columns>places_id</columns>
+      <ref-key>~.places.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="50" parent="13" name="FKkldyusvu8s6gfi07kuj8t6j5f">
+      <columns>user_id</columns>
+      <ref-key>~.user.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="51" parent="14" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="52" parent="14" name="note">
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="53" parent="14" name="order_date">
+      <mandatory>1</mandatory>
+      <data-type>date|0</data-type>
+    </column>
+    <column id="54" parent="14" name="sum">
+      <mandatory>1</mandatory>
+      <data-type>float|0</data-type>
+    </column>
+    <column id="55" parent="14" name="cards_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="56" parent="14" name="categories_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="57" parent="14" name="places_id">
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="58" parent="14" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="59" parent="14" name="FK2letywql3vvjk8ctuh5ms67lx">
+      <columns>cards_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="60" parent="14" name="FKlqcjpqbk6pbe1vf6ratfkx86k">
+      <columns>places_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="61" parent="14" name="FKo6csvxhdtlntax9vg4lcpbfp5">
+      <columns>user_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <index id="62" parent="14" name="FKqn9mw97l9lmogvajac0p5mw79">
+      <columns>categories_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="63" parent="14" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="64" parent="14" name="FK2letywql3vvjk8ctuh5ms67lx">
+      <columns>cards_id</columns>
+      <ref-key>~.cards.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="65" parent="14" name="FKqn9mw97l9lmogvajac0p5mw79">
+      <columns>categories_id</columns>
+      <ref-key>~.categories.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="66" parent="14" name="FKlqcjpqbk6pbe1vf6ratfkx86k">
+      <columns>places_id</columns>
+      <ref-key>~.places.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="67" parent="14" name="FKo6csvxhdtlntax9vg4lcpbfp5">
+      <columns>user_id</columns>
+      <ref-key>~.user.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <column id="68" parent="15" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="69" parent="15" name="type">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="70" parent="15" name="UK_93vn3jeavtylq20tjdx2p2kkd">
+      <columns>type</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="71" parent="15" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <key id="72" parent="15" name="UK_93vn3jeavtylq20tjdx2p2kkd">
+      <columns>type</columns>
+      <underlying-index>UK_93vn3jeavtylq20tjdx2p2kkd</underlying-index>
+    </key>
+    <column id="73" parent="16" name="installed_rank">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="74" parent="16" name="version">
+      <data-type>varchar(50)|0</data-type>
+    </column>
+    <column id="75" parent="16" name="description">
+      <mandatory>1</mandatory>
+      <data-type>varchar(200)|0</data-type>
+    </column>
+    <column id="76" parent="16" name="type">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="77" parent="16" name="script">
+      <mandatory>1</mandatory>
+      <data-type>varchar(1000)|0</data-type>
+    </column>
+    <column id="78" parent="16" name="checksum">
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="79" parent="16" name="installed_by">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="80" parent="16" name="installed_on">
+      <mandatory>1</mandatory>
+      <data-type>timestamp|0</data-type>
+      <default-expression>CURRENT_TIMESTAMP</default-expression>
+    </column>
+    <column id="81" parent="16" name="execution_time">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="82" parent="16" name="success">
+      <mandatory>1</mandatory>
+      <data-type>tinyint(1)|0</data-type>
+    </column>
+    <index id="83" parent="16" name="schema_version_s_idx">
+      <columns>success</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="84" parent="16" name="PRIMARY">
+      <columns>installed_rank</columns>
+      <primary>1</primary>
+    </key>
+    <column id="85" parent="17" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="86" parent="17" name="cash">
+      <mandatory>1</mandatory>
+      <data-type>float|0</data-type>
+    </column>
+    <column id="87" parent="17" name="Enabled">
+      <mandatory>1</mandatory>
+      <data-type>bit(1)|0</data-type>
+    </column>
+    <column id="88" parent="17" name="mail">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="89" parent="17" name="Password">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="90" parent="17" name="Username">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <index id="91" parent="17" name="UK_3fwf1qdgfhtmivqs75d6runwx">
+      <columns>Username</columns>
+      <desc-columns></desc-columns>
+      <unique>1</unique>
+    </index>
+    <key id="92" parent="17" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <key id="93" parent="17" name="UK_3fwf1qdgfhtmivqs75d6runwx">
+      <columns>Username</columns>
+      <underlying-index>UK_3fwf1qdgfhtmivqs75d6runwx</underlying-index>
+    </key>
+    <column id="94" parent="18" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="95" parent="18" name="role_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <index id="96" parent="18" name="FKlhhbknkqrbbja7jt6ao2vluhx">
+      <columns>role_id</columns>
+      <desc-columns></desc-columns>
+    </index>
+    <key id="97" parent="18" name="PRIMARY">
+      <columns>user_id
+role_id</columns>
+      <primary>1</primary>
+    </key>
+    <foreign-key id="98" parent="18" name="FK40cm955hgg5oxf1oax8mqw0c4">
+      <columns>user_id</columns>
+      <ref-key>~.user.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+    <foreign-key id="99" parent="18" name="FKlhhbknkqrbbja7jt6ao2vluhx">
+      <columns>role_id</columns>
+      <ref-key>~.role.PRIMARY</ref-key>
+      <cascade-update-rule>restrict</cascade-update-rule>
+      <cascade-delete-rule>restrict</cascade-delete-rule>
+    </foreign-key>
+  </database-model>
+</dataSource>
