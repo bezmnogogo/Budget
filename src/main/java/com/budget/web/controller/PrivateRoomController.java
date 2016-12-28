@@ -49,24 +49,30 @@ public class PrivateRoomController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/action/{action}")
     public String changeUserData(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap modelMap, @PathVariable("action") String action){
+        String message = null;
         switch (action){
             case "changeUsername":
-                //user = userService.changeUsername(user.getId(),request.getParameter("p_name"));
-                //userDetailsService.changeUsername(user, request.getParameter("p_name"));
+                if(userService.checkIfUserExists(request.getParameter("p_name"))){
+                    message = "Пользователь с таким логином существует";
+                    break;
+                }
                 user.setUsername(request.getParameter("p_name"));
                 break;
             case "changeLimit":
-                //user = userService.changeUserLimit(user.getId(), new Float(request.getParameter("p_limit")));
                 user.setMounthlyLimit(new Float(request.getParameter("p_limit")));
                 break;
             case "changeMail":
-                //user = userService.changeUserMail(user.getId(), request.getParameter("p_email"));
+                if(userService.checkIfMailExists(request.getParameter("p_email"))){
+                    message = "пользователь с таким email уже существует";
+                    break;
+                }
                 user.setMail(request.getParameter("p_email"));
                 break;
         }
 
         user = userService.saveCurrentUserWithDetailsUpdate(user);
         modelMap.addAttribute("user", user);
+        modelMap.addAttribute("message", message);
         return "Person_page";
     }
 

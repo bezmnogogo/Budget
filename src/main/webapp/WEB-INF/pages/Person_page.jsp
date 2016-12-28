@@ -13,6 +13,7 @@
 		<div class="person_name"> 
 			<p>Логин</p>
 			<input type="text" name="p_name" value="${user.username}">
+			<b>${message}</b>
 			<button type="submit">изменить</button>
 		</div>
 		</form>

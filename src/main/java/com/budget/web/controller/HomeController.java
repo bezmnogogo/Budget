@@ -5,14 +5,20 @@ import com.budget.dao.entities.User;
 import com.budget.services.ICategoryService;
 import com.budget.services.IPlaceService;
 import com.budget.services.IUserService;
+import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 
+import javax.lang.model.util.Elements;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Created by home on 14.11.16.
@@ -43,7 +49,6 @@ public class HomeController {
     //получение стр логина
     @RequestMapping(method = RequestMethod.GET, value = "/login")
     public String login() {
-        Category category = categoryService.getCategoryByid(1);
         return "login";
     }
 
