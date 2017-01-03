@@ -26,7 +26,7 @@ public class User implements UserDetails {
     @Column(name = "Password", nullable = false)
     private String password;
     @Column(name = "cash", nullable = false)
-    private float cash = 50000;
+    private float cash = 0;
     @Column(name = "Enabled", nullable = false)
     private boolean enabled;
     @ManyToMany(fetch = FetchType.EAGER)

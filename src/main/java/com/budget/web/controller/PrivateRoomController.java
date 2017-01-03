@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by home on 14.12.16.
  */
 @Controller
-@RequestMapping(value = "/private-room")
+@RequestMapping(value = "/privateRoom")
 public class PrivateRoomController {
     private final IUserService userService;
     private final IRecordService recordService;

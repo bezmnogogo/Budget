@@ -19,6 +19,7 @@ import javax.lang.model.util.Elements;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
 
 /**
  * Created by home on 14.11.16.
@@ -62,8 +63,40 @@ public class HomeController {
     //получение страницы регистрации
     @RequestMapping(method = RequestMethod.GET, value = "/registration")
     public String registration(){
-        return "registration";
+        return "Register_page";
     }
 
+    @RequestMapping(method = RequestMethod.POST, value = "/registration")
+    public String registration(HttpServletRequest request, ModelMap model){
+        User user = new User();
+        user.setMail(request.getParameter("mail"));
+        user.setUsername(request.getParameter("login"));
+        user.setPassword(request.getParameter("password"));
+        user.setEnabled(true);
+        user.setCreateDate(new java.sql.Date(new java.util.Date().getTime()));
+        if(userService.checkIfMailExists(user.getMail())){
+            String message = "this mail is already exist. Please fix it";
+            model.addAttribute("message", message);
+            return "/registration";
+        }
+        if(userService.checkIfUserExists(user.getUsername())){
+            String message = "this login is already exist. Please fix it";
+            model.addAttribute("message", message);
+            return "/registration";
+        }
 
+        userService.setUserRole(user);
+        User usr = userService.saveUser(user);
+
+        return "login";
+    }
+
+    //Start Page
+    @RequestMapping(method = RequestMethod.GET, value = "/main")
+    public String mainPage(@AuthenticationPrincipal User user, ModelMap model){
+        if(user == null){
+            return "login";
+        }
+        return "";
+    }
 }

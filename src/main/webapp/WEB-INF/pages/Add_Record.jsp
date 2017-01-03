@@ -14,6 +14,16 @@
 				<p>Сумма</p>
 				<input type="text" name="sum">
 			</div>
+			<div>
+				<p>
+					<select name="selectedCategory">
+						<option disabled>Выберите категорию</option>
+						<c:forEach var="category" items="${categories}">
+							<option value="${category}">${category.getType()}</option>
+						</c:forEach>
+					</select>
+				</p>
+			</div>
 			<div class="category">
 				<p>Категории</p>
 				<input type="text" name="category">

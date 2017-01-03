@@ -30,19 +30,19 @@
 
                         <li role="presentation" class="nav-divider"></li>
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1"
-                               href="<c:url value="/"/>">
+                            <a role="menuitem" tabindex="1"
+                               href="<c:url value="/фыв"/>">
                                 Item</a>
                         </li>
                         <li role="presentation">
-                            <a role="menuitem" tabindex="-1"
-                               href="<c:url value="/"/>">
-                                Item</a>
+                            <a role="menuitem" tabindex="21"
+                               href="<c:url value="/вфы"/>">
+                                Item1</a>
                         </li>
                         <li role="presentation" class="nav-divider"></li>
                         <li role="presentation">
                             <a role="menuitem" tabindex="-1"
-                               href="<c:url value="/"/>">Item</a>
+                               href="<c:url value="/фыв"/>">Item2</a>
                         </li>
                         <li role="presentation">
                             <a role="menuitem" tabindex="-1"
@@ -71,7 +71,6 @@
                 <li id="menu-archive"><a href="<c:url value="/"/>">Архив</a></li>
                 <li id="menu-logout"><a href="<c:url value="/logout"/>">
                     Выйти <span style="color:blue">
-                    (<sec:authentication property="principal.username"/>)
                         </span></a>
                 </li>
 
