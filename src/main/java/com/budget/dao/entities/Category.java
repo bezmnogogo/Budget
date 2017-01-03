@@ -45,4 +45,8 @@ public class Category extends GenericEntity {
     public void setPlannedRecords(Set<PlannedRecord> plannedRecords) {
         this.plannedRecords = plannedRecords;
     }
+
+    public void addRecord(Record record){
+        this.records.add(record);
+    }
 }

@@ -29,7 +29,20 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
+    @Transactional
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public Category getCategoryByType(String type) {
+        return categoryRepository.findByType(type);
+    }
+
+    @Override
+    @Transactional
+    public void saveCategory(Category category) {
+        categoryRepository.saveAndFlush(category);
     }
 }

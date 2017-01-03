@@ -11,4 +11,8 @@ public interface ICategoryService {
     Category getCategoryByid(long id);
 
     List<Category> getAllCategories();
+
+    Category getCategoryByType(String type);
+
+    void saveCategory(Category category);
 }

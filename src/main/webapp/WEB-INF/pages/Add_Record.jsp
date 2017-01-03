@@ -9,24 +9,23 @@
 	</head>
 	<body>
 		<h1> Добавление расходов</h1>
-		<form method="post" action="<c:url value=" "/> ">
+		<form method="post" action="<c:url value="/records/addPaidRecord"/> ">
 			<div class="sum"> 
 				<p>Сумма</p>
 				<input type="text" name="sum">
 			</div>
 			<div>
+				<p><input type="date" name="recordDate" max="NOW"></p>
+			</div>
+			<div>
 				<p>
-					<select name="selectedCategory">
+					<select required name="selectedCategory">
 						<option disabled>Выберите категорию</option>
 						<c:forEach var="category" items="${categories}">
-							<option value="${category}">${category.getType()}</option>
+							<option value="${category.getType()}">${category.getType()}</option>
 						</c:forEach>
 					</select>
 				</p>
-			</div>
-			<div class="category">
-				<p>Категории</p>
-				<input type="text" name="category">
 			</div>
 			<div class="person_limit">
 				<p>Заметки</p>
