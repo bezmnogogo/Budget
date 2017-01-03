@@ -20,12 +20,20 @@
 			<div>
 				<p>
 					<select required name="selectedCategory">
-						<option disabled>Выберите категорию</option>
+						<option selected disabled>Выберите категорию</option>
 						<c:forEach var="category" items="${categories}">
 							<option value="${category.getType()}">${category.getType()}</option>
 						</c:forEach>
 					</select>
 				</p>
+			</div>
+			<div>
+				<select name="selectedCard">
+					<option selected desabled>Выберите карту</option>
+					<c:forEach var="card" items="${cards}">
+						<option value="${card.getCardNumber()}">${card.getCardNumber()}</option>
+					</c:forEach>
+				</select>
 			</div>
 			<div class="person_limit">
 				<p>Заметки</p>

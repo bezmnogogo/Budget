@@ -61,11 +61,22 @@ public class User implements UserDetails {
     @Column(name = "mail", nullable = false)
     private String mail;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private Set<Record> records;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "user")
     private Set<PlannedRecord> plannedRecords;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Card> cards;
+
+    public Set<Card> getCards() {
+        return cards;
+    }
+
+    public void setCards(Set<Card> cards) {
+        this.cards = cards;
+    }
 
     public Set<Record> getRecords() {
         return records;

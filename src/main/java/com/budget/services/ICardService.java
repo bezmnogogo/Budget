@@ -11,6 +11,5 @@ public interface ICardService {
     //получаем список карт пользователя
     List<Card> getCardsByUserId(long userId);
 
-
-
+    Card getCardByCardNumber(String number);
 }

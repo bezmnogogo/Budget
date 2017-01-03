@@ -16,10 +16,10 @@ public class Category extends GenericEntity {
     @Column(name = "type", nullable = false)
     private String type;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "category")
     private Set<Record> records;
 
-    @OneToMany(fetch = FetchType.EAGER,mappedBy = "category", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER,mappedBy = "category")
     private Set<PlannedRecord> plannedRecords;
 
     public String getType() {

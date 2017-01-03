@@ -35,8 +35,8 @@ public class RecordService implements IRecordService{
     }
 
     @Override
+    @Transactional
     public List<Record> getRecordsByUserId(long id) {
-        List<Record> rc = recordRepository.getRecordsByUserId(id);
         return recordRepository.getRecordsByUserId(id);
     }
 }

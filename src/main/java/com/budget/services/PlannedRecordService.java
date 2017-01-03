@@ -1,5 +1,8 @@
 package com.budget.services;
 
+import com.budget.dao.entities.PlannedRecord;
+import com.budget.dao.repository.IPlannedRecordRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -8,5 +11,17 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 @Transactional
-public class PlannedRecordService {
+public class PlannedRecordService implements IPlannedRecordService{
+
+    private final IPlannedRecordRepository plannedRecordRepository;
+
+    @Autowired
+    public PlannedRecordService(IPlannedRecordRepository plannedRecordRepository) {
+        this.plannedRecordRepository = plannedRecordRepository;
+    }
+
+    @Override
+    public void savePlannedRecord(PlannedRecord plannedRecord) {
+        plannedRecordRepository.saveAndFlush(plannedRecord);
+    }
 }

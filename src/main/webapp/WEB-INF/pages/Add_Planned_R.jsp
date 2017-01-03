@@ -9,22 +9,42 @@
 	</head>
 	<body>
 		<h1> Добавление расходов</h1>
-		<form method="post" action="<c:url value=" "/> ">
+		<form method="post" action="<c:url value="/records/addPlannedRecord"/> ">
 			<div class="sum"> 
 				<p>Сумма</p>
 				<input type="text" name="sum">
 			</div>
-			<div class="category">
-				<p>Категории</p>
-				<input type="text" name="category">
+			<div>
+				<p>
+					<select required name="selectedCategory">
+						<option selected disabled>Выберите категорию</option>
+						<c:forEach var="category" items="${categories}">
+							<option value="${category.getType()}">${category.getType()}</option>
+						</c:forEach>
+					</select>
+				</p>
 			</div>
 			<div class="period">
 				<p>Период повтора</p>
-				<input type="text" name="period">
+				<select required name="period">
+					<option value="0">без повторений</option>
+					<option value="7">каждую неделю</option>
+					<option value="30">каждый месяц</option>
+				</select>
+			</div>
+			<div>
+				<p>
+				<select name="selectedCard">
+					<option selected desabled>Выберите карту</option>
+					<c:forEach var="card" items="${cards}">
+						<option value="${card.getCardNumber()}">${card.getCardNumber()}</option>
+					</c:forEach>
+				</select>
+				</p>
 			</div>
 			<div class="data">
-				<p>Дата</p>
-				<input type="text" name="data">
+				<p>Дата первого платежа</p>
+					<p><input type="date" name="recordDate" max="NOW"></p>
 			</div>
 			<div class="person_limit">
 				<p>Заметки</p>

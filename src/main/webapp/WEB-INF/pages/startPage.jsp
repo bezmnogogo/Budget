@@ -33,7 +33,7 @@
             Test forn git
         </div>
         <div class="row">
-            <a class="button" href="<c:url value="/messages/" />">go to messages</a>
+            <a class="button" href="<c:url value="/registration" />">go to registration!</a>
         </div>
     </tiles:putAttribute>
 </tiles:insertDefinition>
