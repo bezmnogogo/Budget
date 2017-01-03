@@ -43,7 +43,9 @@ public class HomeController {
     //получение стартовой страницы
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String startPage(@AuthenticationPrincipal User user, ModelMap modelMap, HttpServletRequest request){
-        int i = 0;
+        if(user != null){
+            return mainPage(user,modelMap);
+        }
         return "startPage";
     }
 
@@ -97,6 +99,6 @@ public class HomeController {
         if(user == null){
             return "login";
         }
-        return "";
+        return "Main_page";
     }
 }

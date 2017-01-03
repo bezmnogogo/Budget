@@ -89,4 +89,15 @@ public class Record extends GenericEntity{
     public void setCard(Card card) {
         this.card = card;
     }
+
+    @Override
+    public String toString() {
+        String record = "";
+        record += "дата расхода: " + recordDate;
+        if(place != null){record += " место расхода: " + place.getName() + place.getAddress();}
+        if(card != null){record += " номер карточки: " + card.getCardNumber();}
+        record += " потрачено: " + sum;
+        if(note != null){record += " заметки: " + note;}
+        return record;
+    }
 }
