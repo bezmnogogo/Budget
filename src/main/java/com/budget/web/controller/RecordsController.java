@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -14,7 +15,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by home on 03.01.17.
@@ -28,6 +29,8 @@ public class RecordsController {
     private final IRecordService recordService;
     private final ICardService cardService;
     private final IPlannedRecordService plannedRecordService;
+
+    enum Mounth{Январь,Февраль, Март, Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь, Ноябрь, Декабрь}
 
     @Autowired
     public RecordsController(IUserService userService, ICategoryService categoryService, IRecordService recordService, ICardService cardService, IPlannedRecordService plannedRecordService) {
@@ -123,4 +126,62 @@ public class RecordsController {
         return addPlannedRecord(user,model);
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/mounthlyRecords")
+    public String getMounthlyRecords(@AuthenticationPrincipal User user, ModelMap model){
+        if(user == null){return "login";}
+        int intMounth = Calendar.getInstance().getTime().getMonth();
+        String mounth = "";
+
+        List<Record> records = user.getRecordsByMounth(intMounth);
+        List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth);
+        records.addAll(plannedRecords);
+        Collections.sort(records, Record.getCompByDate());
+
+        for(Mounth m : Mounth.values()){
+            if(intMounth == (m.ordinal())){
+                mounth = m.name();
+            }
+        }
+        int prevMounth = (intMounth == 0) ? (11) : (intMounth-1);
+        int nextMounth = (intMounth == 11) ? (0) : (intMounth+1);
+        model.addAttribute("prevMounth", prevMounth);
+        model.addAttribute("nextMounth", nextMounth);
+        model.addAttribute("mounth", mounth);
+        model.addAttribute("records", records);
+
+        return "Slider_bet_page";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/getRecordsByMounth/{mounth}")
+    public String getRecordsByMounth(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model, @PathVariable int mounth){
+        if(user == null){return "login";}
+
+        int intMounth = mounth;
+        String mounthStr = "";
+
+        List<Record> records = user.getRecordsByMounth(intMounth);
+        List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth);
+        records.addAll(plannedRecords);
+        Collections.sort(records, Record.getCompByDate());
+
+        for(Mounth m : Mounth.values()){
+            if(intMounth == (m.ordinal())){
+                mounthStr = m.name();
+            }
+        }
+        int prevMounth = (intMounth == 0) ? (11) : (intMounth-1);
+        int nextMounth = (intMounth == 11) ? (0) : (intMounth+1);
+        model.addAttribute("prevMouth", prevMounth);
+        model.addAttribute("nextMounth", nextMounth);
+        model.addAttribute("mounth", mounthStr);
+        model.addAttribute("records", records);
+
+        return "Slider_bet_page";
+    }
+
+
+    @RequestMapping(method = RequestMethod.GET, value = "/getRecord/{isPlanned}/{id}")
+    public String getRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model, @PathVariable int isPlanned, @PathVariable long id){
+        return "";
+    }
 }

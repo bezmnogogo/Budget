@@ -6,8 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.Collection;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by home on 14.11.16.
@@ -189,5 +188,74 @@ public class User implements UserDetails {
 
     public void addPlannedRecord(PlannedRecord plannedRecord){
         this.plannedRecords.add(plannedRecord);
+    }
+
+    public List<Record> getRecordsByMounth(int mounth){
+        List<Record> mounthRecords = new ArrayList<>();
+        for(Record record : records){
+            if(record.getRecordDate().getMonth() == mounth){
+                mounthRecords.add(record);
+            }
+        }
+        Collections.sort(mounthRecords, Record.getCompByDate());
+        return mounthRecords;
+    }
+
+    public List<Record> getPlannedRecordsByMounth(int mounth){
+        List<Record> mounthRecords = new ArrayList<>();
+        for(PlannedRecord plannedRecord : plannedRecords){
+            if(plannedRecord.getDayPosition() == 0){
+                Record record = new Record();
+                if(plannedRecord.getCard() != null){record.setCard(plannedRecord.getCard());}
+                record.setNote(plannedRecord.getNote());
+                record.setSum(plannedRecord.getSum());
+                record.setRecordDate(plannedRecord.getStartDate());
+                record.setCategory(plannedRecord.getCategory());
+                record.setUser(plannedRecord.getUser());
+                record.setId(plannedRecord.getId());
+                record.setPlanned(true);
+                if(record.getRecordDate().getMonth() == mounth)
+                    mounthRecords.add(record);
+            }
+            if(plannedRecord.getDayPosition() == 7){
+                for(int i = 1, day = plannedRecord.getStartDate().getDay() + 1, mounth1 = plannedRecord.getStartDate().getMonth(); i < 20; i++){
+                    Record record = new Record();
+                    if(plannedRecord.getCard() != null){record.setCard(plannedRecord.getCard());}
+                    record.setId(plannedRecord.getId());
+                    record.setNote(plannedRecord.getNote());
+                    record.setSum(plannedRecord.getSum());
+                    record.setRecordDate(new Date(plannedRecord.getStartDate().getYear(),mounth1,day ));
+                    record.setCategory(plannedRecord.getCategory());
+                    record.setUser(plannedRecord.getUser());
+                    record.setPlanned(true);
+                    if(record.getRecordDate().getMonth() == mounth)
+                        mounthRecords.add(record);
+                    day += 7;
+                    if(day > 30){
+                        day %= 30;
+                        mounth1 = (mounth1 + 1 <= 12) ? mounth1 + 1 : (mounth1 + 1)%12;
+                    }
+                }
+            }
+
+            if(plannedRecord.getDayPosition() == 30){
+                for(int i = 1, mounth1 = plannedRecord.getStartDate().getMonth(); i < 4; i++){
+                    Record record = new Record();
+                    if(plannedRecord.getCard() != null){record.setCard(plannedRecord.getCard());}
+                    record.setId(plannedRecord.getId());
+                    record.setNote(plannedRecord.getNote());
+                    record.setSum(plannedRecord.getSum());
+                    record.setRecordDate(new Date(plannedRecord.getStartDate().getYear(),mounth1,plannedRecord.getStartDate().getDay()));
+                    record.setCategory(plannedRecord.getCategory());
+                    record.setUser(plannedRecord.getUser());
+                    record.setPlanned(true);
+                    if(record.getRecordDate().getMonth() == mounth)
+                        mounthRecords.add(record);
+                    mounth = (mounth1 + 1 <= 12) ? mounth1 + 1 : (mounth1 + 1)%12;
+                }
+            }
+        }
+        Collections.sort(mounthRecords, Record.getCompByDate());
+        return mounthRecords;
     }
 }

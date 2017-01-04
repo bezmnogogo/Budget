@@ -10,11 +10,11 @@
 	</head>
 	<body>
 		<nav>
-			<a href="">Главная</a>	
-			<a href="">Обзор расходов</a>
-			<a href="">Категории</a>
-			<a href="">По времени</a>
-			<a href="">Личный кабинет</a>
+			<a href="<c:url value="/main"/> ">Главная</a>
+			<a href="<c:url value=""/>">Обзор расходов</a>
+			<a href="<c:url value="/categories/"/>">Категории</a>
+			<a href="<c:url value="/records/mounthlyRecords"/>">По времени</a>
+			<a href="<c:url value="/privateRoom"/>">Личный кабинет</a>
 		</nav>
 		<div class="last_expenses">
 			<h2>Последние траты</h2>

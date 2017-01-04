@@ -2,6 +2,7 @@ package com.budget.dao.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Comparator;
 
 /**
  * Created by home on 12.12.16.
@@ -33,6 +34,17 @@ public class Record extends GenericEntity{
 
     @Column(name = "note")
     private String note;
+
+    //переменная для костыля, вывода отсортированного списка расходов
+    private Boolean isPlanned = false;
+
+    public Boolean getPlanned() {
+        return isPlanned;
+    }
+
+    public void setPlanned(Boolean planned) {
+        isPlanned = planned;
+    }
 
     public String getNote() {
         return note;
@@ -99,5 +111,17 @@ public class Record extends GenericEntity{
         record += " потрачено: " + sum;
         if(note != null){record += " заметки: " + note;}
         return record;
+    }
+
+    public static Comparator<Record> getCompByDate()
+    {
+        Comparator comp = new Comparator<Record>(){
+            @Override
+            public int compare(Record r1, Record r2)
+            {
+                return r1.getRecordDate().compareTo(r2.getRecordDate());
+            }
+        };
+        return comp;
     }
 }

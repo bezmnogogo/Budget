@@ -2,6 +2,7 @@ package com.budget.dao.entities;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Comparator;
 
 /**
  * Created by home on 12.12.16.

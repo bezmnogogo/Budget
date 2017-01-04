@@ -8,6 +8,13 @@
 		<title>Категории</title>
 	</head>
 	<body>
+	<nav>
+		<a href="<c:url value="/main"/> ">Главная</a>
+		<a href="<c:url value=""/>">Обзор расходов</a>
+		<a href="<c:url value="/categories/"/>">Категории</a>
+		<a href="<c:url value="/records/mounthlyRecords"/>">По времени</a>
+		<a href="<c:url value="/privateRoom"/>">Личный кабинет</a>
+	</nav>
 		<section>
 			<h2>Категории:</h2>
 			<ul>
