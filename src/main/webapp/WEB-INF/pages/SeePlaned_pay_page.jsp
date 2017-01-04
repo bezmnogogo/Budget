@@ -52,7 +52,7 @@
 								<c:when test="${cards == null}">
 									<option selected disabled>У вас нет карт</option>
 								</c:when>
-								<c:when test="${card.getNumber() == plannedRecord.getCard().getCardNumber()}">
+								<c:when test="${card.getCardNumber() == plannedRecord.getCard().getCardNumber()}">
 									<option selected value="${card.getCardNumber()}">${card.getCardNumber()}</option>
 								</c:when>
 								<c:otherwise>

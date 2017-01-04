@@ -1,5 +1,6 @@
 package com.budget.web.controller;
 
+import com.budget.dao.entities.Category;
 import com.budget.dao.entities.Record;
 import com.budget.dao.entities.User;
 import com.budget.services.ICategoryService;
@@ -55,5 +56,34 @@ public class CategoryController {
         model.addAttribute("records", records);
         model.addAttribute("message", " по категории " + categoryService.getCategoryByid(category).getType());
         return "Kategory_page";
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/addCategory")
+    public String addCategory(@AuthenticationPrincipal User user, ModelMap model){
+        if(user == null){return "login";}
+        return "Add_category";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/addCategory")
+    public String addCategory(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model){
+        if(user == null){return "login";}
+        List<Category> categories = categoryService.getAllCategories();
+        boolean exist = false;
+        String str = request.getParameter("category");
+        for (Category category : categories){
+            if (category.getType().equals(request.getParameter("category"))){
+                exist = true;
+            }
+        }
+        if(exist){
+            model.addAttribute("message", "Такая категория уже существует. Введите другую");
+            return "Add_category";
+        }else {
+            Category category = new Category();
+            category.setType(request.getParameter("category"));
+            categoryService.saveCategory(category);
+            model.addAttribute("addedMessage", " Категория добавлена!");
+            return "Add_category";
+        }
     }
 }

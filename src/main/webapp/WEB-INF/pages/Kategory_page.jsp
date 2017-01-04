@@ -22,7 +22,7 @@
 					<li><a href="<c:url value="/categories/getRecords/${category.getId()}"/> ">${category.getType()}</a></li>
 				</c:forEach>
 			</ul>
-			<a href="">Добавить +</a>
+			<a href="<c:url value="/categories/addCategory"/>">Добавить +</a>
 		</section>
 		<section>
 			<h2>Список расходов ${message}:</h2>
