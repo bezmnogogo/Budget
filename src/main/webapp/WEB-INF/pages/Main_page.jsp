@@ -48,7 +48,7 @@
 					</c:otherwise>
 				</c:choose>
 			</ul>
-			<a href="" class="add_enemy">Добавить карту+</a>
+			<a href="<c:url value="/addCard"/>" class="add_enemy">Добавить карту+</a>
 		</div>
 		<div class="for_parsing">
 			<h2> Курсы валют</h2>

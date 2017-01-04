@@ -71,4 +71,14 @@ public class Card extends GenericEntity{
     public void setCash(float cash) {
         this.cash = cash;
     }
+
+    @Override
+    public String toString() {
+
+        String result = "Номер карты: " + cardNumber;
+        result += " остаток на карте: " + cash;
+
+
+        return result;
+    }
 }

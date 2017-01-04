@@ -33,4 +33,10 @@ public class CardService implements ICardService{
     public Card getCardByCardNumber(String number) {
         return cardRepository.findByCardNumber(number);
     }
+
+    @Override
+    @Transactional
+    public void saveCard(Card card) {
+        cardRepository.saveAndFlush(card);
+    }
 }

@@ -12,4 +12,6 @@ public interface ICardService {
     List<Card> getCardsByUserId(long userId);
 
     Card getCardByCardNumber(String number);
+
+    void saveCard(Card card);
 }

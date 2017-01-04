@@ -316,4 +316,8 @@ public class User implements UserDetails {
             }
         }
     }
+
+    public void addCard(Card card){
+        this.cards.add(card);
+    }
 }
