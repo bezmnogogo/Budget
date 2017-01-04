@@ -101,4 +101,23 @@ public class PlannedRecord extends GenericEntity{
     public void setNote(String note) {
         this.note = note;
     }
+
+    @Override
+    public String toString() {
+
+        String record = "";
+        String period = "";
+        switch (dayPosition){
+            case 0: period = "без повторений"; break;
+            case 7: period = "неделя"; break;
+            case 30: period = "месяц"; break;
+        }
+
+        record += "сумма: " + sum;
+        record += "категория: " + category.getType();
+        record += "дата начала: " + startDate.toString();
+        record += "период повторений: " + period;
+        record += "заметка: " + note;
+        return record;
+    }
 }

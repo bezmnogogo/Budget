@@ -78,6 +78,8 @@ public class RecordsController {
         //category.addRecord(record);
         //categoryService.saveCategory(category);
         recordService.addRecord(record);
+        user.addRecord(record);
+        category.addRecord(record);
         return addPaidRecord(user, model);
     }
 
@@ -116,6 +118,8 @@ public class RecordsController {
         }
         plannedRecord.setNote(request.getParameter("text"));
         plannedRecordService.savePlannedRecord(plannedRecord);
+        user.addPlannedRecord(plannedRecord);
+        plannedRecord.getCategory().addPlannedRecords(plannedRecord);
         return addPlannedRecord(user,model);
     }
 

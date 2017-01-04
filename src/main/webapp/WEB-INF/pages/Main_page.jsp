@@ -19,33 +19,34 @@
 		<div class="last_expenses">
 			<h2>Последние траты</h2>
 			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
+				<c:forEach var="record" items="${records}">
+					<li>${record.toString()}</li>
+				</c:forEach>
 			</ul>
-			<a href="" class="add_enemy">Добавить трату+</a>
+			<a href="<c:url value="/records/addPaidRecord"/> " class="add_enemy">Добавить трату+</a>
 		</div>
 		<div class="near_expenses">
 			<h2> Ближайшие запланированные расходы</h2>
 			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
+				<c:forEach var="plannedRecord" items="${plannedRecords}">
+					<li>${plannedRecord.toString()}</li>
+				</c:forEach>
 			</ul>
 			<a href="" class="add_enemy">Добавить расход+</a>
 		</div>
 		<div class="information">
 			<h2> Информация о картах</h2>
 			<ul>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
-				<li></li>
+				<c:choose>
+					<c:when test="${cards == null}">
+						<li>У Вас нет карт</li>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="card" items="${cards}">
+							<li>${card.toString()}</li>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			</ul>
 			<a href="" class="add_enemy">Добавить карту+</a>
 		</div>

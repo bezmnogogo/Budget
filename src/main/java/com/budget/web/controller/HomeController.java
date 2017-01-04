@@ -1,25 +1,19 @@
 package com.budget.web.controller;
 
-import com.budget.dao.entities.Category;
+import com.budget.dao.entities.PlannedRecord;
+import com.budget.dao.entities.Record;
 import com.budget.dao.entities.User;
-import com.budget.services.ICategoryService;
-import com.budget.services.IPlaceService;
-import com.budget.services.IUserService;
-import org.jsoup.Jsoup;
+import com.budget.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 
-import javax.lang.model.util.Elements;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.sql.Date;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by home on 14.11.16.
@@ -29,15 +23,21 @@ import java.sql.Date;
 public class HomeController {
 
     @Autowired
-    public HomeController(IUserService userService, IPlaceService placeService, ICategoryService categoryService){
+    public HomeController(IUserService userService, IPlaceService placeService, ICategoryService categoryService, IRecordService recordService, IPlannedRecordService plannedRecordService, ICardService cardService){
         this.userService = userService;
         this.placeService = placeService;
         this.categoryService = categoryService;
+        this.recordService = recordService;
+        this.plannedRecordService = plannedRecordService;
+        this.cardService = cardService;
     }
 
     private final IUserService userService;
     private final IPlaceService placeService;
     private final ICategoryService categoryService;
+    private final IRecordService recordService;
+    private final IPlannedRecordService plannedRecordService;
+    private final ICardService cardService;
 
 
     //получение стартовой страницы
@@ -99,6 +99,14 @@ public class HomeController {
         if(user == null){
             return "login";
         }
+        //List<Record> records = recordService.getRecordsByUserId(user.getId());
+        //List<PlannedRecord> plannedRecords = plannedRecordService.getPlannedRecordsByUserId(user.getId());
+
+        Set<Record> records = user.getRecords();
+        Set<PlannedRecord> plannedRecords = user.getPlannedRecords();
+
+        model.addAttribute("records", records);
+        model.addAttribute("plannedRecords", plannedRecords);
         return "Main_page";
     }
 }

@@ -182,4 +182,12 @@ public class User implements UserDetails {
     public void addCash(float cash){
         this.cash += cash;
     }
+
+    public void addRecord(Record record){
+        this.records.add(record);
+    }
+
+    public void addPlannedRecord(PlannedRecord plannedRecord){
+        this.plannedRecords.add(plannedRecord);
+    }
 }
