@@ -10,13 +10,13 @@
 	<body>
 	<nav>
 		<a href="<c:url value="/main"/> ">Главная</a>
-		<a href="<c:url value=""/>">Обзор расходов</a>
+		<a href="<c:url value="/records/Overview/"/>">Обзор расходов</a>
 		<a href="<c:url value="/categories/"/>">Категории</a>
 		<a href="<c:url value="/records/mounthlyRecords"/>">По времени</a>
 		<a href="<c:url value="/privateRoom/"/>">Личный кабинет</a>
 	</nav>
 		<h1> Личный кабинет</h1>
-		<form method="post" action="<c:url value="/private-room/action/changeUsername"/> ">
+		<form method="post" action="<c:url value="/privateRoom/action/changeUsername"/> ">
 		<div class="person_name"> 
 			<p>Логин</p>
 			<input type="text" name="p_name" value="${user.username}">
@@ -24,14 +24,14 @@
 			<button type="submit">изменить</button>
 		</div>
 		</form>
-		<form method="post" action="<c:url value="/private-room/action/changeMail "/> ">
+		<form method="post" action="<c:url value="/privateRoom/action/changeMail "/> ">
 		<div class="person_email">
 			<p>E-mail</p>
 			<input type="e-mail" name="p_email" value="${user.mail}">
 			<button type="submit">Изменить</button>
 		</div>
 		</form>
-		<form method="post" action="<c:url value=" /private-room/action/changeLimit"/> ">
+		<form method="post" action="<c:url value=" /privateRoom/action/changeLimit"/> ">
 		<div class="person_limit">
 			<p>Лимит</p>
 			<input type="text" name="p_limit" value="${user.mounthlyLimit}">

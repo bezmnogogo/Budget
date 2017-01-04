@@ -11,7 +11,7 @@
 	<body>
 	<nav>
 		<a href="<c:url value="/main"/> ">Главная</a>
-		<a href="<c:url value=""/>">Обзор расходов</a>
+		<a href="<c:url value="/records/Overview/"/>">Обзор расходов</a>
 		<a href="<c:url value="/categories/"/>">Категории</a>
 		<a href="<c:url value="/records/mounthlyRecords"/>">По времени</a>
 		<a href="<c:url value="/privateRoom/"/>">Личный кабинет</a>
@@ -39,7 +39,6 @@
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-
 	        </ul>
 		</p>
 	</body>
