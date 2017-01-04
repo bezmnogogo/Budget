@@ -39,4 +39,9 @@ public class RecordService implements IRecordService{
     public List<Record> getRecordsByUserId(long id) {
         return recordRepository.getRecordsByUserId(id);
     }
+
+    @Override
+    public void deleteRecordById(long id) {
+        recordRepository.delete(id);
+    }
 }

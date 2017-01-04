@@ -53,4 +53,24 @@ public class Category extends GenericEntity {
     public void addPlannedRecords(PlannedRecord plannedRecord){
         this.plannedRecords.add(plannedRecord);
     }
+
+    public boolean deleteRecordById(long id){
+        boolean complete = false;
+        for (Record record : records){
+            if(record.getId() == id){
+                return records.remove(record);
+            }
+        }
+        return complete;
+    }
+
+    public void updateRecord(Record record){
+        for(Record record1 : records){
+            if(record1.getId() == record.getId()){
+                records.remove(record1);
+                records.add(record);
+                return;
+            }
+        }
+    }
 }

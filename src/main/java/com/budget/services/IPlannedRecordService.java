@@ -13,4 +13,6 @@ public interface IPlannedRecordService {
 
     List<PlannedRecord> getPlannedRecordsByUserId(long id);
 
+    PlannedRecord getPlannedRecordById(long id);
+
 }

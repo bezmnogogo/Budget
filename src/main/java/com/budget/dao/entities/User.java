@@ -258,4 +258,33 @@ public class User implements UserDetails {
         Collections.sort(mounthRecords, Record.getCompByDate());
         return mounthRecords;
     }
+
+    public boolean deleteRecordById(long id){
+        boolean complete = false;
+        for (Record record : records){
+            if(record.getId() == id){
+                return records.remove(record);
+            }
+        }
+        return complete;
+    }
+
+    public Record getRecordById(long id){
+        for (Record record : records){
+            if(record.getId() == id){
+                return record;
+            }
+        }
+        return null;
+    }
+
+    public void updateRecord(Record record){
+        for(Record record1 : records){
+            if(record1.getId() == record.getId()){
+                records.remove(record1);
+                records.add(record);
+                return;
+            }
+        }
+    }
 }

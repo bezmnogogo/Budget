@@ -182,6 +182,63 @@ public class RecordsController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/getRecord/{isPlanned}/{id}")
     public String getRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model, @PathVariable int isPlanned, @PathVariable long id){
-        return "";
+        if(user == null){return "login";}
+        PlannedRecord plannedRecord = null;
+        Record record = null;
+        List<Category> categories = categoryService.getAllCategories();
+        if(isPlanned == 1){
+            plannedRecord = plannedRecordService.getPlannedRecordById(id);
+            model.addAttribute("plannedRecord", plannedRecord);
+            model.addAttribute("categories", categories);
+            model.addAttribute("cards", user.getCards());
+            return "SeePlaned_pay_page";
+        }
+        else{
+            record = recordService.getRecordById(id);
+            model.addAttribute("record", record);
+            model.addAttribute("categories", categories);
+            model.addAttribute("cards", user.getCards());
+            return "See_pay_page";
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/changeRecord")
+    public String changeRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model){
+        if(user == null){return "login";}
+        String delete = request.getParameter("clear_b");
+        String change = request.getParameter("repair_b");
+        long id = Long.parseLong(request.getParameter("id"));
+
+        if(delete != null){
+            if(user.getRecordById(id) != null)
+                user.getRecordById(id).getCategory().deleteRecordById(id);  //clear category
+            user.deleteRecordById(id); //clear user
+            recordService.deleteRecordById(id);  //delete record
+        }
+        if(change != null){
+
+            DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+            Date date = null;
+            try {
+                date = new Date(format.parse(request.getParameter("recordDate")).getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            Record record = new Record();
+            record.setUser(user);
+            record.setId(id);
+            record.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory")));
+            record.setRecordDate(date);
+            record.setNote(request.getParameter("text"));
+            record.setSum(Float.valueOf(request.getParameter("sum")));
+            if(request.getParameter("card") != null){
+                record.setCard(cardService.getCardByCardNumber(request.getParameter("card")));
+            }
+            record.getCategory().updateRecord(record);
+            user.updateRecord(record);
+            recordService.addRecord(record);
+        }
+        return "main"; //
     }
 }

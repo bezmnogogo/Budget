@@ -13,4 +13,7 @@ public interface IRecordService {
     List<Record> getRecordsByUserId(long id);
 
     Record getRecordById(long id);
+
+    void deleteRecordById(long id);
+
 }

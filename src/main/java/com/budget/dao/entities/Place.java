@@ -61,4 +61,14 @@ public class Place extends GenericEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    public boolean deleteRecordById(long id){
+        boolean complete = false;
+        for (Record record : records){
+            if(record.getId() == id){
+                complete = records.remove(record);
+            }
+        }
+        return complete;
+    }
 }

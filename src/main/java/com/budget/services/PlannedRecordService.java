@@ -33,4 +33,10 @@ public class PlannedRecordService implements IPlannedRecordService{
     public List<PlannedRecord> getPlannedRecordsByUserId(long id) {
         return plannedRecordRepository.getRecordsByUserId(id);
     }
+
+    @Override
+    @Transactional
+    public PlannedRecord getPlannedRecordById(long id) {
+        return plannedRecordRepository.findOne(id);
+    }
 }
