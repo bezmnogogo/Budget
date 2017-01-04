@@ -14,7 +14,7 @@
 			<a href="<c:url value=""/>">Обзор расходов</a>
 			<a href="<c:url value="/categories/"/>">Категории</a>
 			<a href="<c:url value="/records/mounthlyRecords"/>">По времени</a>
-			<a href="<c:url value="/privateRoom"/>">Личный кабинет</a>
+			<a href="<c:url value="/privateRoom/"/>">Личный кабинет</a>
 		</nav>
 		<div class="last_expenses">
 			<h2>Последние траты</h2>
@@ -32,7 +32,7 @@
 					<li>${plannedRecord.toString()}</li>
 				</c:forEach>
 			</ul>
-			<a href="" class="add_enemy">Добавить расход+</a>
+			<a href="<c:url value="/records/addPlannedRecord"/> " class="add_enemy">Добавить расход+</a>
 		</div>
 		<div class="information">
 			<h2> Информация о картах</h2>

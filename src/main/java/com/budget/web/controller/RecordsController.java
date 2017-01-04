@@ -86,7 +86,7 @@ public class RecordsController {
         return addPaidRecord(user, model);
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "addPlannedRecord")
+    @RequestMapping(method = RequestMethod.GET, value = "/addPlannedRecord")
     public String addPlannedRecord(@AuthenticationPrincipal User user, ModelMap model){
         if(user == null){
             return "login";
@@ -98,7 +98,7 @@ public class RecordsController {
         return "Add_Planned_R";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "addPlannedRecord")
+    @RequestMapping(method = RequestMethod.POST, value = "/addPlannedRecord")
     public String addPlannedRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model){
         if(user == null){return "login";}
 
