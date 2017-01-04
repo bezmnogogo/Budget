@@ -179,7 +179,6 @@ public class RecordsController {
         return "Slider_bet_page";
     }
 
-
     @RequestMapping(method = RequestMethod.GET, value = "/getRecord/{isPlanned}/{id}")
     public String getRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model, @PathVariable int isPlanned, @PathVariable long id){
         if(user == null){return "login";}
@@ -286,4 +285,53 @@ public class RecordsController {
 
         return addPlannedRecord(user, model); //
     }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/Overview")
+    public String overviewRecords(@AuthenticationPrincipal User user, ModelMap model){
+        if(user == null){return "login";}
+        int intMounth = Calendar.getInstance().getTime().getMonth();
+        List<Record> records = user.getRecordsByMounth(intMounth);
+        List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth);
+        List<Record> allRecords = new ArrayList<>();
+        allRecords.addAll(records);
+        allRecords.addAll(plannedRecords);
+        plannedRecords.clear();
+        records.clear();
+        for (Record record : allRecords){
+            if(record.getRecordDate().compareTo(Calendar.getInstance().getTime()) > 0){
+                plannedRecords.add(record);
+            }
+            else{
+                records.add(record);
+            }
+        }
+        Collections.sort(records, Record.getCompByDate());
+        Collections.sort(plannedRecords, Record.getCompByDate());
+        float currentPay = calculatePayments(records);
+        float futurePay = calculatePayments(plannedRecords);
+        float limit = user.getMounthlyLimit();
+        float balance = limit - currentPay;
+        if(balance < 0){
+            model.addAttribute("message", "Вы превысили лимит!");
+        }
+
+        model.addAttribute("currentPay", currentPay);
+        model.addAttribute("futurePay", futurePay);
+        model.addAttribute("balance", balance);
+        model.addAttribute("limit", limit);
+
+        model.addAttribute("records", records);
+        model.addAttribute("futureRecords", plannedRecords);
+
+        return "Overview_Res_page";
+    }
+
+    float calculatePayments(List<Record> records){
+        float summ = 0;
+        for (Record record : records){
+            summ += record.getSum();
+        }
+        return summ;
+    }
+
 }
