@@ -39,4 +39,9 @@ public class PlannedRecordService implements IPlannedRecordService{
     public PlannedRecord getPlannedRecordById(long id) {
         return plannedRecordRepository.findOne(id);
     }
+
+    @Override
+    public void deletePlannedRecordById(long id) {
+        plannedRecordRepository.delete(id);
+    }
 }

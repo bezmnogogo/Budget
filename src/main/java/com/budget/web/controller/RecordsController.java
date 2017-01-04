@@ -238,7 +238,52 @@ public class RecordsController {
             record.getCategory().updateRecord(record);
             user.updateRecord(record);
             recordService.addRecord(record);
+            return getRecord(user,request,model,0,id);
         }
-        return "main"; //
+        return addPaidRecord(user, model); //
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/changePlannedRecord")
+    public String changePlannedRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model){
+        if(user == null){return "login";}
+        String delete = request.getParameter("clear_b");
+        String change = request.getParameter("repair_b");
+        long id = Long.parseLong(request.getParameter("id"));
+
+        if(delete != null){
+            if(user.getPlannedRecordById(id) != null)
+                user.getPlannedRecordById(id).getCategory().deletePlannedRecordById(id);  //clear category
+            user.deletePlannedRecordById(id); //clear user
+            plannedRecordService.deletePlannedRecordById(id);  //delete record
+        }
+        if(change != null){
+            DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
+            Date date = null;
+            try {
+                date = new Date(format.parse(request.getParameter("recordDate")).getTime());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            PlannedRecord plannedRecord = new PlannedRecord();
+            plannedRecord.setId(id);
+            plannedRecord.setSum(Float.valueOf(request.getParameter("sum")));
+            plannedRecord.setUser(user);
+            plannedRecord.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory")));
+            plannedRecord.setDayPosition(Integer.valueOf(request.getParameter("period")));
+            plannedRecord.setStartDate(date);
+            if(request.getParameter("card") != null){
+                plannedRecord.setCard(cardService.getCardByCardNumber(request.getParameter("card")));
+            }
+            plannedRecord.setNote(request.getParameter("text"));
+
+            plannedRecord.getCategory().updatePlannedRecord(plannedRecord);
+            user.updatePlannedRecord(plannedRecord);
+
+            plannedRecordService.savePlannedRecord(plannedRecord);
+            return getRecord(user,request,model,1,id);
+        }
+
+        return addPlannedRecord(user, model); //
     }
 }

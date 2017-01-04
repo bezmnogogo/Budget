@@ -18,7 +18,7 @@
 				<a href="<c:url value="/privateRoom/"/>">Личный кабинет</a>
 			</nav>
 		</header>
-		<form method="post" action="<c:url value=" "/> ">
+		<form method="post" action="<c:url value="/records//changePlannedRecord "/> ">
 		<section>
 			<ul>
 				<li>Расход</li>
@@ -62,7 +62,7 @@
 						</c:forEach>
 					</select>
 				</li>
-				<li><input type="date" value="${plannedRecord.getStartDate()}" name="date"></li>
+				<li><input type="date" value="${plannedRecord.getStartDate()}" name="recordDate"></li>
 				<li>
 					<select required name="period">
 						<option ${plannedRecord.getDayPosition() == 0 ? "selected" : ""} value="0">без повторений</option>

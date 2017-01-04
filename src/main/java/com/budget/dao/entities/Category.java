@@ -64,6 +64,15 @@ public class Category extends GenericEntity {
         return complete;
     }
 
+    public PlannedRecord getPlannedRecordById(long id){
+        for(PlannedRecord plannedRecord : plannedRecords){
+            if(plannedRecord.getId() == id){
+                return plannedRecord;
+            }
+        }
+        return null;
+    }
+
     public void updateRecord(Record record){
         for(Record record1 : records){
             if(record1.getId() == record.getId()){
@@ -72,5 +81,25 @@ public class Category extends GenericEntity {
                 return;
             }
         }
+    }
+
+    public void updatePlannedRecord(PlannedRecord plannedRecord){
+        for(PlannedRecord record : plannedRecords){
+            if(record.getId() == plannedRecord.getId()){
+                plannedRecords.remove(record);
+                plannedRecords.add(plannedRecord);
+                return;
+            }
+        }
+    }
+
+    public boolean deletePlannedRecordById(long id){
+        boolean complete = false;
+        for (PlannedRecord plannedRecord : plannedRecords){
+            if(plannedRecord.getId() == id){
+                return plannedRecords.remove(plannedRecord);
+            }
+        }
+        return complete;
     }
 }

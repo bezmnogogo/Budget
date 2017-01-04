@@ -269,6 +269,35 @@ public class User implements UserDetails {
         return complete;
     }
 
+    public boolean deletePlannedRecordById(long id){
+        boolean complete = false;
+        for (PlannedRecord plannedRecord : plannedRecords){
+            if(plannedRecord.getId() == id){
+                return plannedRecords.remove(plannedRecord);
+            }
+        }
+        return complete;
+    }
+
+    public PlannedRecord getPlannedRecordById(long id){
+        for(PlannedRecord plannedRecord : plannedRecords){
+            if(plannedRecord.getId() == id){
+                return plannedRecord;
+            }
+        }
+        return null;
+    }
+
+    public void updatePlannedRecord(PlannedRecord plannedRecord){
+        for(PlannedRecord record : plannedRecords){
+            if(record.getId() == plannedRecord.getId()){
+                plannedRecords.remove(record);
+                plannedRecords.add(plannedRecord);
+                return;
+            }
+        }
+    }
+
     public Record getRecordById(long id){
         for (Record record : records){
             if(record.getId() == id){
