@@ -29,7 +29,7 @@ public class Record extends GenericEntity{
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cards_id")
+    @JoinColumn(name = "fk_orders_cards1")
     private Card card;
 
     @Column(name = "note")

@@ -68,8 +68,9 @@ public class RecordsController {
 
         Category category = categoryService.getCategoryByType(request.getParameter("selectedCategory"));
 
-        if(request.getParameter("card") != null){
-            record.setCard(cardService.getCardByCardNumber(request.getParameter("card")));
+        if(request.getParameter("selectedCard") != null){
+            record.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
+            //record.setCard(user.getCardByNumber(request.getParameter("selectedCard")));
         }
 
         record.setUser(user);
@@ -80,9 +81,11 @@ public class RecordsController {
         //category.setRecords(records);
         //category.addRecord(record);
         //categoryService.saveCategory(category);
-        recordService.addRecord(record);
         user.addRecord(record);
         category.addRecord(record);
+        record.getCard().addRecord(record);
+        cardService.saveCard(record.getCard());
+        recordService.addRecord(record);
         return addPaidRecord(user, model);
     }
 
@@ -116,8 +119,9 @@ public class RecordsController {
         plannedRecord.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory")));
         plannedRecord.setDayPosition(Integer.valueOf(request.getParameter("period")));
         plannedRecord.setStartDate(date);
-        if(request.getParameter("card") != null){
-            plannedRecord.setCard(cardService.getCardByCardNumber(request.getParameter("card")));
+        if(request.getParameter("selectedCard") != null){
+            plannedRecord.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
+            //plannedRecord.setCard(user.getCardByNumber(request.getParameter("selectedCard")));
         }
         plannedRecord.setNote(request.getParameter("text"));
         plannedRecordService.savePlannedRecord(plannedRecord);
@@ -224,6 +228,8 @@ public class RecordsController {
                 e.printStackTrace();
             }
 
+            String str = request.getParameter("selectedCard");
+
             Record record = new Record();
             record.setUser(user);
             record.setId(id);
@@ -231,9 +237,11 @@ public class RecordsController {
             record.setRecordDate(date);
             record.setNote(request.getParameter("text"));
             record.setSum(Float.valueOf(request.getParameter("sum")));
-            if(request.getParameter("card") != null){
-                record.setCard(cardService.getCardByCardNumber(request.getParameter("card")));
+            if(request.getParameter("selectedCard") != null){
+                record.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
+                //record.setCard(user.getCardByNumber(request.getParameter("selectedCard")));
             }
+            record.getCard().updateRecord(record);
             record.getCategory().updateRecord(record);
             user.updateRecord(record);
             recordService.addRecord(record);
@@ -271,8 +279,9 @@ public class RecordsController {
             plannedRecord.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory")));
             plannedRecord.setDayPosition(Integer.valueOf(request.getParameter("period")));
             plannedRecord.setStartDate(date);
-            if(request.getParameter("card") != null){
-                plannedRecord.setCard(cardService.getCardByCardNumber(request.getParameter("card")));
+            if(request.getParameter("selectedCard") != null){
+                plannedRecord.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
+                //plannedRecord.setCard(user.getCardByNumber(request.getParameter("selectedCard")));
             }
             plannedRecord.setNote(request.getParameter("text"));
 

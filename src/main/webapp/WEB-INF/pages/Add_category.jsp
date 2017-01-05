@@ -9,6 +9,13 @@
 		<title></title>
 	</head>
 	<body>
+	<nav>
+		<a href="<c:url value="/main"/> ">Главная</a>
+		<a href="<c:url value="/records/Overview/"/>">Обзор расходов</a>
+		<a href="<c:url value="/categories/"/>">Категории</a>
+		<a href="<c:url value="/records/mounthlyRecords"/>">По времени</a>
+		<a href="<c:url value="/privateRoom/"/>">Личный кабинет</a>
+	</nav>
 		<form method="post" action="<c:url value=" "/> ">
 				<h1>Добавить категорию</h1>
 				<c:if test="${message != null}">

@@ -69,7 +69,6 @@ public class CategoryController {
         if(user == null){return "login";}
         List<Category> categories = categoryService.getAllCategories();
         boolean exist = false;
-        String str = request.getParameter("category");
         for (Category category : categories){
             if (category.getType().equals(request.getParameter("category"))){
                 exist = true;

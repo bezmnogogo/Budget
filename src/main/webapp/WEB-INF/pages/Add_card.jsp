@@ -9,6 +9,13 @@
 		<title>Просмотр расходов</title>
 	</head>
 	<body>
+	<nav>
+		<a href="<c:url value="/main"/> ">Главная</a>
+		<a href="<c:url value="/records/Overview/"/>">Обзор расходов</a>
+		<a href="<c:url value="/categories/"/>">Категории</a>
+		<a href="<c:url value="/records/mounthlyRecords"/>">По времени</a>
+		<a href="<c:url value="/privateRoom/"/>">Личный кабинет</a>
+	</nav>
 		<form method="post" action="<c:url value="/addCard"/> ">
 				<h1>Добавить карту</h1>
 				<input type="number" name="cardNumber" placeholder="Введите номер карты">

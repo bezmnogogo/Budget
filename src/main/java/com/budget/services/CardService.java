@@ -1,6 +1,7 @@
 package com.budget.services;
 
 import com.budget.dao.entities.Card;
+import com.budget.dao.entities.User;
 import com.budget.dao.repository.ICardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,8 +25,8 @@ public class CardService implements ICardService{
 
     @Override
     @Transactional
-    public List<Card> getCardsByUserId(long userId) {
-        return null;
+    public List<Card> getCardsByUserId(long user) {
+        return cardRepository.findCardByUserId(user);
     }
 
     @Override

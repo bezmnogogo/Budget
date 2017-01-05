@@ -320,4 +320,13 @@ public class User implements UserDetails {
     public void addCard(Card card){
         this.cards.add(card);
     }
+
+    public Card getCardByNumber(String number){
+        for(Card card : cards){
+            if(card.getCardNumber().equals(number)){
+                return card;
+            }
+        }
+        return null;
+    }
 }
