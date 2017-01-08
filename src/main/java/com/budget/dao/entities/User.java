@@ -220,11 +220,15 @@ public class User implements UserDetails {
             if(plannedRecord.getDayPosition() == 7){
                 for(int i = 1, day = plannedRecord.getStartDate().getDay() + 1, mounth1 = plannedRecord.getStartDate().getMonth(); i < 20; i++){
                     Record record = new Record();
+                    String date = plannedRecord.getStartDate().toString().substring(0,8);
                     if(plannedRecord.getCard() != null){record.setCard(plannedRecord.getCard());}
                     record.setId(plannedRecord.getId());
                     record.setNote(plannedRecord.getNote());
                     record.setSum(plannedRecord.getSum());
-                    record.setRecordDate(new Date(plannedRecord.getStartDate().getYear(),mounth1,day ));
+
+                    record.setRecordDate(Date.valueOf(date+day));
+                    record.getRecordDate().setMonth(mounth1);
+
                     record.setCategory(plannedRecord.getCategory());
                     record.setUser(plannedRecord.getUser());
                     record.setPlanned(true);
@@ -245,13 +249,14 @@ public class User implements UserDetails {
                     record.setId(plannedRecord.getId());
                     record.setNote(plannedRecord.getNote());
                     record.setSum(plannedRecord.getSum());
-                    record.setRecordDate(new Date(plannedRecord.getStartDate().getYear(),mounth1,plannedRecord.getStartDate().getDay()));
+                    record.setRecordDate(Date.valueOf(plannedRecord.getStartDate().toString()));
+                    record.getRecordDate().setMonth(mounth1);
                     record.setCategory(plannedRecord.getCategory());
                     record.setUser(plannedRecord.getUser());
                     record.setPlanned(true);
                     if(record.getRecordDate().getMonth() == mounth)
                         mounthRecords.add(record);
-                    mounth = (mounth1 + 1 <= 12) ? mounth1 + 1 : (mounth1 + 1)%12;
+                    mounth1 = (mounth1 + 1 <= 12) ? mounth1 + 1 : (mounth1 + 1)%12;
                 }
             }
         }
