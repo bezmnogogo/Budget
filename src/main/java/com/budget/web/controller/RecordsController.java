@@ -41,6 +41,7 @@ public class RecordsController {
         this.plannedRecordService = plannedRecordService;
     }
 
+    //получение страницы добавления расхода
     @RequestMapping(method = RequestMethod.GET, value = "/addPaidRecord")
     public String addPaidRecord(@AuthenticationPrincipal User user, ModelMap model){
         if(user == null){
@@ -83,12 +84,17 @@ public class RecordsController {
         //categoryService.saveCategory(category);
         user.addRecord(record);
         category.addRecord(record);
-        record.getCard().addRecord(record);
-        cardService.saveCard(record.getCard());
+
+        if(record.getCard() != null) {                 //update card
+            record.getCard().addRecord(record);
+            //cardService.saveCard(record.getCard());
+        }
         recordService.addRecord(record);
+
         return addPaidRecord(user, model);
     }
 
+    //получение страницы добавления запланированного расхода
     @RequestMapping(method = RequestMethod.GET, value = "/addPlannedRecord")
     public String addPlannedRecord(@AuthenticationPrincipal User user, ModelMap model){
         if(user == null){
@@ -101,6 +107,7 @@ public class RecordsController {
         return "Add_Planned_R";
     }
 
+    //добавляем запланированный расход
     @RequestMapping(method = RequestMethod.POST, value = "/addPlannedRecord")
     public String addPlannedRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model){
         if(user == null){return "login";}
@@ -127,9 +134,16 @@ public class RecordsController {
         plannedRecordService.savePlannedRecord(plannedRecord);
         user.addPlannedRecord(plannedRecord);
         plannedRecord.getCategory().addPlannedRecords(plannedRecord);
+
+        if(plannedRecord.getCard() != null) {                        //update card
+            plannedRecord.getCard().addPlannedRecord(plannedRecord);
+            //cardService.saveCard(record.getCard());
+        }
+
         return addPlannedRecord(user,model);
     }
 
+    //получаем расходы по месяцу
     @RequestMapping(method = RequestMethod.GET, value = "/mounthlyRecords")
     public String getMounthlyRecords(@AuthenticationPrincipal User user, ModelMap model){
         if(user == null){return "login";}
@@ -156,6 +170,7 @@ public class RecordsController {
         return "Slider_bet_page";
     }
 
+    //получаем расход по месяцу, когда тапаем по кнопке сл месяца
     @RequestMapping(method = RequestMethod.GET, value = "/getRecordsByMounth/{mounth}")
     public String getRecordsByMounth(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model, @PathVariable int mounth){
         if(user == null){return "login";}
@@ -183,6 +198,7 @@ public class RecordsController {
         return "Slider_bet_page";
     }
 
+    //получаем расход и переходим на страницу его изменения
     @RequestMapping(method = RequestMethod.GET, value = "/getRecord/{isPlanned}/{id}")
     public String getRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model, @PathVariable int isPlanned, @PathVariable long id){
         if(user == null){return "login";}
@@ -205,6 +221,7 @@ public class RecordsController {
         }
     }
 
+    //изменяем расход или удаляем его
     @RequestMapping(method = RequestMethod.POST, value = "/changeRecord")
     public String changeRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model){
         if(user == null){return "login";}
@@ -241,7 +258,11 @@ public class RecordsController {
                 record.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
                 //record.setCard(user.getCardByNumber(request.getParameter("selectedCard")));
             }
-            record.getCard().updateRecord(record);
+
+            if(record.getCard() != null){               //update card
+                record.getCard().updateRecord(record);
+            }
+
             record.getCategory().updateRecord(record);
             user.updateRecord(record);
             recordService.addRecord(record);
@@ -250,6 +271,7 @@ public class RecordsController {
         return addPaidRecord(user, model); //
     }
 
+    //изменяем или удаляем запланированный расход
     @RequestMapping(method = RequestMethod.POST, value = "/changePlannedRecord")
     public String changePlannedRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model){
         if(user == null){return "login";}
@@ -288,6 +310,10 @@ public class RecordsController {
             plannedRecord.getCategory().updatePlannedRecord(plannedRecord);
             user.updatePlannedRecord(plannedRecord);
 
+            if(plannedRecord.getCard() != null){                                //update card
+                plannedRecord.getCard().updatePlannedRecord(plannedRecord);
+            }
+
             plannedRecordService.savePlannedRecord(plannedRecord);
             return getRecord(user,request,model,1,id);
         }
@@ -295,6 +321,7 @@ public class RecordsController {
         return addPlannedRecord(user, model); //
     }
 
+    //обзор расходов
     @RequestMapping(method = RequestMethod.GET, value = "/Overview")
     public String overviewRecords(@AuthenticationPrincipal User user, ModelMap model){
         if(user == null){return "login";}

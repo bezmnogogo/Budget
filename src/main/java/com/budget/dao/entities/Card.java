@@ -85,6 +85,10 @@ public class Card extends GenericEntity{
         this.records.add(record);
     }
 
+    public void addPlannedRecord(PlannedRecord plannedRecord){
+        this.plannedRecords.add(plannedRecord);
+    }
+
     public boolean deleteRecordById(long id){
         boolean complete = false;
         for (Record record : records){
@@ -142,4 +146,5 @@ public class Card extends GenericEntity{
             }
         }
     }
+
 }
