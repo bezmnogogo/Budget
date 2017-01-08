@@ -17,7 +17,7 @@
 				<input type="password" placeholder="Введите пароль" maxlength="15" name="password" required>
  			</div>
  			<div class="sub_button">
-				<input type="submit" value="Продолить">
+				<input type="submit" value="Продолить"> <h3>${message}</h3>
  			</div>
 		</form>	
 	</body>
