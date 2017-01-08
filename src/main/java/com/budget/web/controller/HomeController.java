@@ -60,7 +60,6 @@ public class HomeController {
     //получение формы из страницы логина
     @RequestMapping(method = RequestMethod.GET, value = "/login", params = {"auth=fail"})
     public String login(ModelMap model) {
-        model.put("message", "Что-то пошло не так. Проверьте логин или пароль.");
         model.put("loginFailed", true);
         return "login";
     }

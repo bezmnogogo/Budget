@@ -148,14 +148,14 @@ public class SecurityConfig extends GlobalMethodSecurityConfiguration {
                     .authorizeRequests()
                     .antMatchers("/home").access("hasRole('ROLE_USER')")
                     .antMatchers("/messages/*").access("hasRole('ROLE_ADMIN')")
-                    .and().formLogin().loginPage("/login");
-					/*.loginPage("/login").permitAll()
+                    .and().formLogin().loginPage("/login")
+					.loginPage("/login").permitAll()
 					.failureUrl("/login?auth=fail")
 					.and()
 					.logout().permitAll()
 					.and()
 					.exceptionHandling().accessDeniedPage("/403")
-					.and().httpBasic();*/
+					.and().httpBasic();
 
 
         }
