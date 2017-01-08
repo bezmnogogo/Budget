@@ -45,6 +45,7 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String startPage(@AuthenticationPrincipal User user, ModelMap modelMap, HttpServletRequest request){
         if(user != null){
+            modelMap.addAttribute("user", user);
             return mainPage(user,modelMap);
         }
         return "startPage";

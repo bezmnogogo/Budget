@@ -316,7 +316,7 @@ public class RecordsController {
     public String overviewRecords(@AuthenticationPrincipal User user, ModelMap model){
         if(user == null){return "login";}
         int intMounth = Calendar.getInstance().getTime().getMonth();
-        int year = Calendar.getInstance().getTime().getYear();
+        int year = Integer.parseInt(Calendar.getInstance().getTime().toString().substring(24));
         List<Record> records = user.getRecordsByMounth(intMounth, year);
         List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth, year);
         List<Record> allRecords = new ArrayList<>();
