@@ -91,6 +91,7 @@ public class RecordsController {
         }
         recordService.addRecord(record);
 
+        model.addAttribute("addedMessage","Расход добавлен!");
         return addPaidRecord(user, model);
     }
 
@@ -140,6 +141,7 @@ public class RecordsController {
             //cardService.saveCard(record.getCard());
         }
 
+        model.addAttribute("addedMessage","Расход добавлен!");
         return addPlannedRecord(user,model);
     }
 

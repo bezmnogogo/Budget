@@ -15,7 +15,7 @@
 		<a href="<c:url value="/records/mounthlyRecords"/>">По времени</a>
 		<a href="<c:url value="/privateRoom/"/>">Личный кабинет</a>
 	</nav>
-		<h1> Добавление расходов</h1>
+		<h1> Добавление расходов</h1><h3>${addedMessage}</h3>
 		<form method="post" action="<c:url value="/records/addPaidRecord"/> ">
 			<div class="sum"> 
 				<p>Сумма</p>
