@@ -190,10 +190,10 @@ public class User implements UserDetails {
         this.plannedRecords.add(plannedRecord);
     }
 
-    public List<Record> getRecordsByMounth(int mounth){
+    public List<Record> getRecordsByMounth(int mounth,int year1){
         List<Record> mounthRecords = new ArrayList<>();
         for(Record record : records){
-            if(record.getRecordDate().getMonth() == mounth){
+                if(record.getRecordDate().getMonth() == mounth && Integer.parseInt(record.getRecordDate().toString().substring(0,4)) == year1){
                 mounthRecords.add(record);
             }
         }
@@ -201,7 +201,7 @@ public class User implements UserDetails {
         return mounthRecords;
     }
 
-    public List<Record> getPlannedRecordsByMounth(int mounth){
+    public List<Record> getPlannedRecordsByMounth(int mounth, int year1){
         List<Record> mounthRecords = new ArrayList<>();
         for(PlannedRecord plannedRecord : plannedRecords){
             if(plannedRecord.getDayPosition() == 0){
@@ -214,11 +214,11 @@ public class User implements UserDetails {
                 record.setUser(plannedRecord.getUser());
                 record.setId(plannedRecord.getId());
                 record.setPlanned(true);
-                if(record.getRecordDate().getMonth() == mounth)
+                if(record.getRecordDate().getMonth() == mounth && Integer.parseInt(record.getRecordDate().toString().substring(0,4)) == year1)
                     mounthRecords.add(record);
             }
             if(plannedRecord.getDayPosition() == 7){
-                for(int i = 0, day = plannedRecord.getStartDate().getDay() + 1, mounth1 = plannedRecord.getStartDate().getMonth(); i < plannedRecord.getRepeatsCount(); i++){
+                for(int i = 0, day = plannedRecord.getStartDate().getDay() + 1, mounth1 = plannedRecord.getStartDate().getMonth(), year = plannedRecord.getStartDate().getYear(); i < plannedRecord.getRepeatsCount(); i++){
                     Record record = new Record();
                     String date = plannedRecord.getStartDate().toString().substring(0,8);
                     if(plannedRecord.getCard() != null){record.setCard(plannedRecord.getCard());}
@@ -228,14 +228,17 @@ public class User implements UserDetails {
 
                     record.setRecordDate(Date.valueOf(date+day));
                     record.getRecordDate().setMonth(mounth1);
-
+                    record.getRecordDate().setYear(year);
                     record.setCategory(plannedRecord.getCategory());
                     record.setUser(plannedRecord.getUser());
                     record.setPlanned(true);
-                    if(record.getRecordDate().getMonth() == mounth)
+                    if(record.getRecordDate().getMonth() == mounth && Integer.parseInt(record.getRecordDate().toString().substring(0,4)) == year1)
                         mounthRecords.add(record);
                     day += 7;
                     if(day > 30){
+                        if(mounth1 + 1 >= 12){
+                            year++;
+                        }
                         day %= 30;
                         mounth1 = (mounth1 + 1 <= 12) ? mounth1 + 1 : (mounth1 + 1)%12;
                     }
@@ -243,7 +246,7 @@ public class User implements UserDetails {
             }
 
             if(plannedRecord.getDayPosition() == 30){
-                for(int i = 0, mounth1 = plannedRecord.getStartDate().getMonth(); i < plannedRecord.getRepeatsCount(); i++){
+                for(int i = 0, mounth1 = plannedRecord.getStartDate().getMonth(), year = plannedRecord.getStartDate().getYear(); i < plannedRecord.getRepeatsCount(); i++){
                     Record record = new Record();
                     if(plannedRecord.getCard() != null){record.setCard(plannedRecord.getCard());}
                     record.setId(plannedRecord.getId());
@@ -251,11 +254,15 @@ public class User implements UserDetails {
                     record.setSum(plannedRecord.getSum());
                     record.setRecordDate(Date.valueOf(plannedRecord.getStartDate().toString()));
                     record.getRecordDate().setMonth(mounth1);
+                    record.getRecordDate().setYear(year);
                     record.setCategory(plannedRecord.getCategory());
                     record.setUser(plannedRecord.getUser());
                     record.setPlanned(true);
-                    if(record.getRecordDate().getMonth() == mounth)
+                    if(record.getRecordDate().getMonth() == mounth && Integer.parseInt(record.getRecordDate().toString().substring(0,4)) == year1)
                         mounthRecords.add(record);
+                    if(mounth1 + 1 >= 12){
+                        year++;
+                    }
                     mounth1 = (mounth1 + 1 <= 12) ? mounth1 + 1 : (mounth1 + 1)%12;
                 }
             }

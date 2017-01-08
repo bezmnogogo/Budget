@@ -18,13 +18,14 @@
 	</nav>
 	<div class="slider">
 		<div class="arrow_left">
-			<a href="<c:url value="/records/getRecordsByMounth/${prevMounth}"/> " name="arrow_left">предыдущий месяц</a>
+			<a href="<c:url value="/records/getRecordsByMounth/prev/${year}/${prevMounth}"/> " name="arrow_left">предыдущий месяц</a>
 		</div>
 		<div class="mounths">
-			<p>${mounth}</p>
+			<p>${mounth} ${year} год</p>
 		</div>
+
 		<div class="arrow_right">
-			<a href="<c:url value="/records/getRecordsByMounth/${nextMounth}"/>" name="arrow_right">следующий месяц</a>
+			<a href="<c:url value="/records/getRecordsByMounth/next/${year}/${nextMounth}"/>" name="arrow_right">следующий месяц</a>
 		</div>
 	</div>
 		<p>

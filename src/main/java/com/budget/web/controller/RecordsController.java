@@ -59,13 +59,7 @@ public class RecordsController {
     @RequestMapping(method = RequestMethod.POST, value = "/addPaidRecord")
     public String addPaidRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model){
         Record record = new Record();
-        DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-        Date date = null;
-        try {
-            date = new Date(format.parse(request.getParameter("recordDate")).getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Date date = Date.valueOf(request.getParameter("recordDate"));
 
         Category category = categoryService.getCategoryByType(request.getParameter("selectedCategory"));
 
@@ -113,14 +107,7 @@ public class RecordsController {
     public String addPlannedRecord(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model){
         if(user == null){return "login";}
 
-        DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-        Date date = null;
-        try {
-            date = new Date(format.parse(request.getParameter("recordDate")).getTime());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
+        Date date = Date.valueOf(request.getParameter("recordDate"));
 
         PlannedRecord plannedRecord = new PlannedRecord();
         plannedRecord.setSum(Float.valueOf(request.getParameter("sum")));
@@ -153,9 +140,10 @@ public class RecordsController {
         if(user == null){return "login";}
         int intMounth = Calendar.getInstance().getTime().getMonth();
         String mounth = "";
+        int year = Integer.parseInt(Calendar.getInstance().getTime().toString().substring(24));
 
-        List<Record> records = user.getRecordsByMounth(intMounth);
-        List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth);
+        List<Record> records = user.getRecordsByMounth(intMounth, year);
+        List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth, year);
         records.addAll(plannedRecords);
         Collections.sort(records, Record.getCompByDate());
 
@@ -166,6 +154,7 @@ public class RecordsController {
         }
         int prevMounth = (intMounth == 0) ? (11) : (intMounth-1);
         int nextMounth = (intMounth == 11) ? (0) : (intMounth+1);
+        model.addAttribute("year", year);
         model.addAttribute("prevMounth", prevMounth);
         model.addAttribute("nextMounth", nextMounth);
         model.addAttribute("mounth", mounth);
@@ -175,15 +164,21 @@ public class RecordsController {
     }
 
     //получаем расход по месяцу, когда тапаем по кнопке сл месяца
-    @RequestMapping(method = RequestMethod.GET, value = "/getRecordsByMounth/{mounth}")
-    public String getRecordsByMounth(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model, @PathVariable int mounth){
+    @RequestMapping(method = RequestMethod.GET, value = "/getRecordsByMounth/{way}/{year}/{mounth}")
+    public String getRecordsByMounth(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model, @PathVariable int mounth, @PathVariable int year, @PathVariable String way){
         if(user == null){return "login";}
 
         int intMounth = mounth;
         String mounthStr = "";
 
-        List<Record> records = user.getRecordsByMounth(intMounth);
-        List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth);
+        if(way.equals("prev") && intMounth == 11){
+            year--;
+        }
+        if(way.equals("next") && intMounth == 0){
+            year++;
+        }
+        List<Record> records = user.getRecordsByMounth(intMounth, year);
+        List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth, year);
         records.addAll(plannedRecords);
         Collections.sort(records, Record.getCompByDate());
 
@@ -194,7 +189,8 @@ public class RecordsController {
         }
         int prevMounth = (intMounth == 0) ? (11) : (intMounth-1);
         int nextMounth = (intMounth == 11) ? (0) : (intMounth+1);
-        model.addAttribute("prevMouth", prevMounth);
+        model.addAttribute("year", year);
+        model.addAttribute("prevMounth", prevMounth);
         model.addAttribute("nextMounth", nextMounth);
         model.addAttribute("mounth", mounthStr);
         model.addAttribute("records", records);
@@ -241,13 +237,7 @@ public class RecordsController {
         }
         if(change != null){
 
-            DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-            Date date = null;
-            try {
-                date = new Date(format.parse(request.getParameter("recordDate")).getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Date date = Date.valueOf(request.getParameter("recordDate"));
 
             String str = request.getParameter("selectedCard");
 
@@ -291,13 +281,7 @@ public class RecordsController {
             plannedRecordService.deletePlannedRecordById(id);  //delete record
         }
         if(change != null){
-            DateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-            Date date = null;
-            try {
-                date = new Date(format.parse(request.getParameter("recordDate")).getTime());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            Date date = Date.valueOf(request.getParameter("recordDate"));
 
             PlannedRecord plannedRecord = new PlannedRecord();
             plannedRecord.setId(id);
@@ -332,8 +316,9 @@ public class RecordsController {
     public String overviewRecords(@AuthenticationPrincipal User user, ModelMap model){
         if(user == null){return "login";}
         int intMounth = Calendar.getInstance().getTime().getMonth();
-        List<Record> records = user.getRecordsByMounth(intMounth);
-        List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth);
+        int year = Calendar.getInstance().getTime().getYear();
+        List<Record> records = user.getRecordsByMounth(intMounth, year);
+        List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth, year);
         List<Record> allRecords = new ArrayList<>();
         allRecords.addAll(records);
         allRecords.addAll(plannedRecords);
