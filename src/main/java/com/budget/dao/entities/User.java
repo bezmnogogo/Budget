@@ -218,7 +218,7 @@ public class User implements UserDetails {
                     mounthRecords.add(record);
             }
             if(plannedRecord.getDayPosition() == 7){
-                for(int i = 1, day = plannedRecord.getStartDate().getDay() + 1, mounth1 = plannedRecord.getStartDate().getMonth(); i < 20; i++){
+                for(int i = 0, day = plannedRecord.getStartDate().getDay() + 1, mounth1 = plannedRecord.getStartDate().getMonth(); i < plannedRecord.getRepeatsCount(); i++){
                     Record record = new Record();
                     String date = plannedRecord.getStartDate().toString().substring(0,8);
                     if(plannedRecord.getCard() != null){record.setCard(plannedRecord.getCard());}
@@ -243,7 +243,7 @@ public class User implements UserDetails {
             }
 
             if(plannedRecord.getDayPosition() == 30){
-                for(int i = 1, mounth1 = plannedRecord.getStartDate().getMonth(); i < 4; i++){
+                for(int i = 0, mounth1 = plannedRecord.getStartDate().getMonth(); i < plannedRecord.getRepeatsCount(); i++){
                     Record record = new Record();
                     if(plannedRecord.getCard() != null){record.setCard(plannedRecord.getCard());}
                     record.setId(plannedRecord.getId());

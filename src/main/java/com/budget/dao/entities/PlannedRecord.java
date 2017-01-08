@@ -39,6 +39,17 @@ public class PlannedRecord extends GenericEntity{
     @Column(name = "note")
     private String note;
 
+    @Column(name = "repeats", nullable = false)
+    private long repeatsCount;
+
+    public long getRepeatsCount() {
+        return repeatsCount;
+    }
+
+    public void setRepeatsCount(long repeatsCount) {
+        this.repeatsCount = repeatsCount;
+    }
+
     public User getUser() {
         return user;
     }

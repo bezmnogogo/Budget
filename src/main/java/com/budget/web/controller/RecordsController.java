@@ -121,12 +121,14 @@ public class RecordsController {
             e.printStackTrace();
         }
 
+
         PlannedRecord plannedRecord = new PlannedRecord();
         plannedRecord.setSum(Float.valueOf(request.getParameter("sum")));
         plannedRecord.setUser(user);
         plannedRecord.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory")));
         plannedRecord.setDayPosition(Integer.valueOf(request.getParameter("period")));
         plannedRecord.setStartDate(date);
+        plannedRecord.setRepeatsCount(Integer.parseInt(request.getParameter("repeats")));
         if(request.getParameter("selectedCard") != null){
             plannedRecord.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
             //plannedRecord.setCard(user.getCardByNumber(request.getParameter("selectedCard")));
@@ -145,7 +147,7 @@ public class RecordsController {
         return addPlannedRecord(user,model);
     }
 
-    //получаем расходы по месяцу
+    //получаем расходы по текущему месяцу
     @RequestMapping(method = RequestMethod.GET, value = "/mounthlyRecords")
     public String getMounthlyRecords(@AuthenticationPrincipal User user, ModelMap model){
         if(user == null){return "login";}

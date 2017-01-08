@@ -53,6 +53,10 @@
 				<p>Дата первого платежа</p>
 					<p><input type="date" name="recordDate" max="NOW"></p>
 			</div>
+			<div class="count">
+				<p>Кол-во раз заплатить</p>
+				<input type="text" name="repeats">
+			</div>
 			<div class="person_limit">
 				<p>Заметки</p>
 				<textarea rows="10" cols="45" name="text"></textarea>
