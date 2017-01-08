@@ -23,7 +23,7 @@ public class PlannedRecord extends GenericEntity{
     private Category category;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cards_id")
+    @JoinColumn(name = "fk_planned_records_cards1")
     private Card card;
 
     @Column(name = "sum", nullable = false)
