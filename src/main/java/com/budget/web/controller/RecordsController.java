@@ -266,6 +266,7 @@ public class RecordsController {
             record.getCategory().updateRecord(record);
             user.updateRecord(record);
             recordService.addRecord(record);
+            model.addAttribute("message", "расход изменен!");
             return getRecord(user,request,model,0,id);
         }
         return addPaidRecord(user, model); //
@@ -315,6 +316,7 @@ public class RecordsController {
             }
 
             plannedRecordService.savePlannedRecord(plannedRecord);
+            model.addAttribute("message", "расход изменен!");
             return getRecord(user,request,model,1,id);
         }
 

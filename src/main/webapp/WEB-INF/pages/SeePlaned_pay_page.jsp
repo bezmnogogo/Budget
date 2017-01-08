@@ -29,7 +29,7 @@
 				<li>Интервал</li>
 			</ul>
 			<ol>
-				<li><textarea rows="1" cols="20" name="pay">Запланированный</textarea></li>
+				<li><textarea rows="1" cols="20" name="pay">Запланированный</textarea> ${message}</li>
 				<li><textarea rows="1" cols="20" name="sum">${plannedRecord.getSum()}</textarea></li>
 				<li>
 					<select required name="selectedCategory">

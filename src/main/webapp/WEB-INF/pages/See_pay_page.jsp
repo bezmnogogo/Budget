@@ -30,7 +30,7 @@
 				<li>Заметка</li>
 			</ul>
 			<ul>
-				<li><textarea rows="1" cols="20" name="${record.getId()}">Завершенный</textarea></li>
+				<li><textarea rows="1" cols="20" name="${record.getId()}">Завершенный</textarea> ${message}</li>
 				<li><textarea rows="1" cols="20" name="sum">${record.getSum()}</textarea></li>
 				<li>
 					<select required name="selectedCategory">
