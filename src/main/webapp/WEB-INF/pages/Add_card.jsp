@@ -15,11 +15,13 @@
 		<a href="<c:url value="/categories/"/>">Категории</a>
 		<a href="<c:url value="/records/mounthlyRecords"/>">По времени</a>
 		<a href="<c:url value="/privateRoom/"/>">Личный кабинет</a>
+		<a href="<c:url value="/cards/getRecords/"/>">Расходы по карте</a>
 		<a href="<c:url value="/logout"/>">Выйти(${user.getUsername()})</a>
 	</nav>
 		<form method="post" action="<c:url value="/addCard"/> ">
 				<h1>Добавить карту</h1>
 				<input type="number" name="cardNumber" placeholder="Введите номер карты">
+			    <input type="number" name="cash" placeholder="Введите остаток">
 				<input type="submit" name="add_kard" value="Добавить">
 		</form>
 	</body>

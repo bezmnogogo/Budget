@@ -6,15 +6,16 @@ import com.budget.dao.entities.Record;
 import com.budget.dao.entities.User;
 import com.budget.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.spel.ast.FloatLiteral;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by home on 14.11.16.
@@ -128,9 +129,60 @@ public class HomeController {
         Card card = new Card();
         card.setUser(user);
         card.setCardNumber(request.getParameter("cardNumber"));
-        card.setCash(0);
+        if(request.getParameter("cash") != null){
+            card.setCash(Float.parseFloat(request.getParameter("cash")));
+        }else {
+            card.setCash(0);
+        }
         user.addCard(card);
         cardService.saveCard(card);
         return mainPage(user, model);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/cards/getRecords/")
+    public String getCardRecords(@AuthenticationPrincipal User user, ModelMap model){
+        if(user == null){return "login";}
+
+        Set<Card> cards = user.getCards();
+        model.addAttribute("cards", cards);
+        return "CardRecords";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/cards/getRecords/")
+    public String getCardRecords(@AuthenticationPrincipal User user, ModelMap model, HttpServletRequest request){
+        int intMounth = Integer.parseInt(request.getParameter("date").substring(5)) - 1;
+        int year = Integer.parseInt(request.getParameter("date").substring(0,4));
+        String mounth = null;
+
+        List<Record> records = user.getRecordsByMounth(intMounth, year);
+        List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth, year);
+        List<Record> allRecords = new ArrayList<>();
+        allRecords.addAll(records);
+        allRecords.addAll(plannedRecords);
+        records.clear();
+
+        for(Record record : allRecords){
+            if(record.getCard() != null) {
+                if (record.getCard().getCardNumber().equals(request.getParameter("selectedCard")) && record.getRecordDate().compareTo(Calendar.getInstance().getTime()) <= 0) {
+                    records.add(record);
+                }
+            }
+        }
+
+        for(RecordsController.Mounth m : RecordsController.Mounth.values()){
+            if(intMounth == (m.ordinal())){
+                mounth = m.name();
+            }
+        }
+
+        Collections.sort(records, Record.getCompByDate());
+        Set<Card> cards = user.getCards();
+
+        model.addAttribute("cards", cards);
+        model.addAttribute("records", records);
+        model.addAttribute("mounth", mounth);
+        model.addAttribute("year", year);
+        model.addAttribute("cardNumber", request.getParameter("selectedCard"));
+        return "CardRecords";
     }
 }
