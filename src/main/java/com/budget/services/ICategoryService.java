@@ -15,4 +15,6 @@ public interface ICategoryService {
     Category getCategoryByType(String type);
 
     void saveCategory(Category category);
+
+    List<Category> getStandartCategories();
 }

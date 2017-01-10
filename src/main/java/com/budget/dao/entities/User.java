@@ -41,6 +41,17 @@ public class User implements UserDetails {
     @Column(name = "mounthly_limit", nullable = false)
     private float mounthlyLimit;
 
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    private Set<Category> usersCategories;
+
+    public Set<Category> getUsersCategories() {
+        return usersCategories;
+    }
+
+    public void setUsersCategories(Set<Category> usersCategories) {
+        this.usersCategories = usersCategories;
+    }
+
     public Date getCreateDate() {
         return createDate;
     }
@@ -340,5 +351,9 @@ public class User implements UserDetails {
             }
         }
         return null;
+    }
+
+    public void addUserCategory(Category category){
+        this.usersCategories.add(category);
     }
 }

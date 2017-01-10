@@ -39,7 +39,12 @@ public class CategoryController {
     @RequestMapping(method = RequestMethod.GET, value = "/*")
     public String categoriesPage(@AuthenticationPrincipal User user, ModelMap model){
         if(user == null){return "login";}
-        model.addAttribute("categories", categoryService.getAllCategories());
+        List<Category> categories = categoryService.getStandartCategories();
+        if(user.getUsersCategories() != null){
+            categories.addAll(user.getUsersCategories());
+        }
+        model.addAttribute("categories", categories);
+        //model.addAttribute("categories", categoryService.getAllCategories());
         return "Kategory_page";
     }
 
@@ -67,7 +72,12 @@ public class CategoryController {
     @RequestMapping(method = RequestMethod.POST, value = "/addCategory")
     public String addCategory(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model){
         if(user == null){return "login";}
-        List<Category> categories = categoryService.getAllCategories();
+        //List<Category> categories = categoryService.getAllCategories();
+        List<Category> categories = categoryService.getStandartCategories();
+        if(user.getUsersCategories() != null){
+            categories.addAll(user.getUsersCategories());
+        }
+
         boolean exist = false;
         for (Category category : categories){
             if (category.getType().equals(request.getParameter("category"))){
@@ -80,6 +90,8 @@ public class CategoryController {
         }else {
             Category category = new Category();
             category.setType(request.getParameter("category"));
+            category.setUser(user);
+            user.addUserCategory(category);
             categoryService.saveCategory(category);
             model.addAttribute("addedMessage", " Категория добавлена!");
             return "Add_category";

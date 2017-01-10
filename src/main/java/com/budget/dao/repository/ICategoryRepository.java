@@ -5,10 +5,15 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.util.List;
+
 /**
  * Created by home on 12.12.16.
  */
 public interface ICategoryRepository extends JpaRepository<Category, Long> {
     @Query("SELECT DISTINCT c FROM Category c WHERE c.type = :type")
     Category findByType(@Param("type") String type);
+
+    @Query("SELECT DISTINCT c FROM Category c WHERE c.user is null")
+    List<Category> getStandartCategories();
 }

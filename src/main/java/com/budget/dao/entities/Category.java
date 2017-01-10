@@ -22,6 +22,18 @@ public class Category extends GenericEntity {
     @OneToMany(fetch = FetchType.EAGER,mappedBy = "category")
     private Set<PlannedRecord> plannedRecords;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "userId")
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public String getType() {
         return type;
     }

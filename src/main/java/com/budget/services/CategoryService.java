@@ -45,4 +45,9 @@ public class CategoryService implements ICategoryService {
     public void saveCategory(Category category) {
         categoryRepository.saveAndFlush(category);
     }
+
+    @Override
+    public List<Category> getStandartCategories() {
+        return categoryRepository.getStandartCategories();
+    }
 }

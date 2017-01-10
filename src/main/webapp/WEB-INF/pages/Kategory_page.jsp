@@ -15,7 +15,7 @@
 		<a href="<c:url value="/records/mounthlyRecords"/>">По времени</a>
 		<a href="<c:url value="/privateRoom/"/>">Личный кабинет</a>
 		<a href="<c:url value="/cards/getRecords/"/>">Расходы по карте</a>
-		<a href="<c:url value="/logout"/>">Выйти(${user.getUsername()})</a>
+		<a href="<c:url value="/logout"/>">Выйти(${pageContext.request.userPrincipal.name})</a>
 	</nav>
 		<section>
 			<h2>Категории:</h2>
