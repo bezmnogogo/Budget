@@ -201,6 +201,21 @@ public class User implements UserDetails {
         this.plannedRecords.add(plannedRecord);
     }
 
+    private static Map<Integer, Integer> mounthMap = new HashMap<Integer, Integer>(){{
+        put(0,31);
+        put(1,28);
+        put(2,31);
+        put(3,30);
+        put(4,31);
+        put(5,30);
+        put(6,31);
+        put(7,31);
+        put(8,30);
+        put(9,31);
+        put(10,30);
+        put(11,31);
+    }};
+
     public List<Record> getRecordsByMounth(int mounth,int year1){
         List<Record> mounthRecords = new ArrayList<>();
         for(Record record : records){
@@ -246,12 +261,12 @@ public class User implements UserDetails {
                     if(record.getRecordDate().getMonth() == mounth && Integer.parseInt(record.getRecordDate().toString().substring(0,4)) == year1)
                         mounthRecords.add(record);
                     day += 7;
-                    if(day > 30){
-                        if(mounth1 + 1 >= 12){
+                    if(day > mounthMap.get(mounth1)){
+                        if(mounth1 + 1 > 12){
                             year++;
                         }
-                        day %= 30;
-                        mounth1 = (mounth1 + 1 <= 12) ? mounth1 + 1 : (mounth1 + 1)%12;
+                        day %= mounthMap.get(mounth1);
+                        mounth1 = (mounth1 + 1 < 12) ? mounth1 + 1 : (mounth1 + 1)%11;
                     }
                 }
             }
