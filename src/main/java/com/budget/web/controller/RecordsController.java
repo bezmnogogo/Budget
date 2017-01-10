@@ -354,6 +354,15 @@ public class RecordsController {
             model.addAttribute("message", "Вы превысили лимит!");
         }
 
+        String mounth = null;
+        for(Mounth m : Mounth.values()){
+            if(intMounth == (m.ordinal())){
+                mounth = m.name();
+                break;
+            }
+        }
+
+        model.addAttribute("mounth", mounth);
         model.addAttribute("currentPay", currentPay);
         model.addAttribute("futurePay", futurePay);
         model.addAttribute("balance", balance);
