@@ -6,10 +6,12 @@
 <html>
 	<head>
 		<title>Регистрация</title>
+		<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/style.css"/>"/>
 	</head>
 	<body>
 		<h1> Регистрация пользователя </h1>
 		<form method="post" action="<c:url value="/registration"/> ">
+			<h3>${message}</h3>
 			<div class="r_block">
 				<input type="email" name="mail" placeholder="Введите e-mail" required>
 			</div>

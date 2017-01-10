@@ -6,6 +6,7 @@
 <html>
 	<head>
 		<title>Вход</title>
+		<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/style.css"/>"/>
 	</head>
 	<body>
 		<h1> Вход в систему </h1>

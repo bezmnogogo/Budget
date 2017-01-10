@@ -7,6 +7,7 @@
 <html>
 	<head>
 		<title>Просмотр расходов</title>
+		<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/style.css"/>"/>
 	</head>
 	<body>
 		<form method="post" action="<c:url value="/records/changeRecord/ "/> ">

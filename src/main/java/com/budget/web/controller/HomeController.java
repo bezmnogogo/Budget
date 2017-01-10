@@ -82,12 +82,12 @@ public class HomeController {
         if(userService.checkIfMailExists(user.getMail())){
             String message = "this mail is already exist. Please fix it";
             model.addAttribute("message", message);
-            return "/registration";
+            return "Register_page";
         }
         if(userService.checkIfUserExists(user.getUsername())){
             String message = "this login is already exist. Please fix it";
             model.addAttribute("message", message);
-            return "/registration";
+            return "Register_page";
         }
 
         userService.setUserRole(user);
