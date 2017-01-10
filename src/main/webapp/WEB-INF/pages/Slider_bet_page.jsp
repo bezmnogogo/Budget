@@ -25,7 +25,6 @@
 		<div class="mounths">
 			<p>${mounth} ${year} год</p>
 		</div>
-
 		<div class="arrow_right">
 			<a href="<c:url value="/records/getRecordsByMounth/next/${year}/${nextMounth}"/>" name="arrow_right">следующий месяц</a>
 		</div>

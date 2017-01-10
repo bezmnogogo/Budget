@@ -22,7 +22,7 @@
 			<h2>Последние траты</h2>
 			<ul>
 				<c:forEach var="record" items="${records}">
-					<li>${record.toString()}</li>
+					<li><a href="<c:url value="/records/getRecord/0/${record.getId()}"/> ">${record.toString()}</a></li>
 				</c:forEach>
 			</ul>
 			<a href="<c:url value="/records/addPaidRecord"/> " class="add_enemy">Добавить трату+</a>
@@ -31,7 +31,7 @@
 			<h2> Ближайшие запланированные расходы</h2>
 			<ul>
 				<c:forEach var="plannedRecord" items="${plannedRecords}">
-					<li>${plannedRecord.toString()}</li>
+					<li><a href="<c:url value="/records/getRecord/1/${plannedRecord.getId()}"/> ">${plannedRecord.toString()}</a></li>
 				</c:forEach>
 			</ul>
 			<a href="<c:url value="/records/addPlannedRecord"/> " class="add_enemy">Добавить расход+</a>
