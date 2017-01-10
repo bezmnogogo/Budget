@@ -47,7 +47,11 @@ public class RecordsController {
         if(user == null){
             return "login";
         }
-        List<Category> categories = categoryService.getAllCategories();
+        //List<Category> categories = categoryService.getAllCategories();
+        List<Category> categories = categoryService.getStandartCategories();
+        if(user.getUsersCategories() != null){
+            categories.addAll(user.getUsersCategories());
+        }
         List<Card> cards = cardService.getCardsByUserId(user.getId());
         model.addAttribute("categories", categories);
         model.addAttribute("cards", cards);
@@ -61,7 +65,7 @@ public class RecordsController {
         Record record = new Record();
         Date date = Date.valueOf(request.getParameter("recordDate"));
 
-        Category category = categoryService.getCategoryByType(request.getParameter("selectedCategory"));
+        Category category = categoryService.getCategoryByType(request.getParameter("selectedCategory"), user.getId());
 
         if(request.getParameter("selectedCard") != null){
             record.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
@@ -95,7 +99,11 @@ public class RecordsController {
         if(user == null){
             return "login";
         }
-        List<Category> categories = categoryService.getAllCategories();
+        //List<Category> categories = categoryService.getAllCategories();
+        List<Category> categories = categoryService.getStandartCategories();
+        if(user.getUsersCategories() != null){
+            categories.addAll(user.getUsersCategories());
+        }
         List<Card> cards = cardService.getCardsByUserId(user.getId());
         model.addAttribute("categories", categories);
         model.addAttribute("cards", cards);
@@ -112,7 +120,7 @@ public class RecordsController {
         PlannedRecord plannedRecord = new PlannedRecord();
         plannedRecord.setSum(Float.valueOf(request.getParameter("sum")));
         plannedRecord.setUser(user);
-        plannedRecord.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory")));
+        plannedRecord.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory"), user.getId()));
         plannedRecord.setDayPosition(Integer.valueOf(request.getParameter("period")));
         plannedRecord.setStartDate(date);
         plannedRecord.setRepeatsCount(Integer.parseInt(request.getParameter("repeats")));
@@ -204,7 +212,11 @@ public class RecordsController {
         if(user == null){return "login";}
         PlannedRecord plannedRecord = null;
         Record record = null;
-        List<Category> categories = categoryService.getAllCategories();
+        //List<Category> categories = categoryService.getAllCategories();
+        List<Category> categories = categoryService.getStandartCategories();
+        if(user.getUsersCategories() != null){
+            categories.addAll(user.getUsersCategories());
+        }
         if(isPlanned == 1){
             plannedRecord = plannedRecordService.getPlannedRecordById(id);
             model.addAttribute("plannedRecord", plannedRecord);
@@ -244,7 +256,7 @@ public class RecordsController {
             Record record = new Record();
             record.setUser(user);
             record.setId(id);
-            record.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory")));
+            record.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory"), user.getId()));
             record.setRecordDate(date);
             record.setNote(request.getParameter("text"));
             record.setSum(Float.valueOf(request.getParameter("sum")));
@@ -287,7 +299,7 @@ public class RecordsController {
             plannedRecord.setId(id);
             plannedRecord.setSum(Float.valueOf(request.getParameter("sum")));
             plannedRecord.setUser(user);
-            plannedRecord.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory")));
+            plannedRecord.setCategory(categoryService.getCategoryByType(request.getParameter("selectedCategory"), user.getId()));
             plannedRecord.setDayPosition(Integer.valueOf(request.getParameter("period")));
             plannedRecord.setStartDate(date);
             if(request.getParameter("selectedCard") != null){

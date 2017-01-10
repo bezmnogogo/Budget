@@ -34,10 +34,11 @@ public class CategoryService implements ICategoryService {
         return categoryRepository.findAll();
     }
 
+    //get category for user by type
     @Override
     @Transactional
-    public Category getCategoryByType(String type) {
-        return categoryRepository.findByType(type);
+    public Category getCategoryByType(String type, long userId) {
+        return categoryRepository.findByTypeAndUser(type, userId);
     }
 
     @Override

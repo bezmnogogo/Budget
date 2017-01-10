@@ -51,13 +51,18 @@ public class CategoryController {
     @RequestMapping(method = RequestMethod.GET, value = "/getRecords/{category}")
     public String getRecordsByCategory(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model, @PathVariable int category){
         if(user == null){return "login";}
-        model.addAttribute("categories", categoryService.getAllCategories());
+        //model.addAttribute("categories", categoryService.getAllCategories());
+        List<Category> categories = categoryService.getStandartCategories();
+        if(user.getUsersCategories() != null){
+            categories.addAll(user.getUsersCategories());
+        }
         List<Record> records = new ArrayList<>();
         for(Record record : recordService.getRecordsByUserId(user.getId())){
             if(record.getCategory().getId() == category){
                 records.add(record);
             }
         }
+        model.addAttribute("categories", categories);
         model.addAttribute("records", records);
         model.addAttribute("message", " по категории " + categoryService.getCategoryByid(category).getType());
         return "Kategory_page";

@@ -12,7 +12,7 @@ public interface ICategoryService {
 
     List<Category> getAllCategories();
 
-    Category getCategoryByType(String type);
+    Category getCategoryByType(String type, long userId);
 
     void saveCategory(Category category);
 
