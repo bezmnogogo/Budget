@@ -21,7 +21,6 @@
 		<form method="post" action="<c:url value="/addCard"/> ">
 				<h1>Добавить карту</h1>
 				<input type="number" name="cardNumber" placeholder="Введите номер карты">
-			    <input type="number" name="cash" placeholder="Введите остаток">
 				<input type="submit" name="add_kard" value="Добавить">
 		</form>
 	</body>

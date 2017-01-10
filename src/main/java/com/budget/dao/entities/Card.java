@@ -76,7 +76,6 @@ public class Card extends GenericEntity{
     public String toString() {
 
         String result = "Номер карты: " + cardNumber;
-        result += " остаток на карте: " + cash;
 
 
         return result;

@@ -84,7 +84,6 @@ public class CategoryController {
         if(user.getUsersCategories() != null){
             categories.addAll(user.getUsersCategories());
         }
-
         boolean exist = false;
         for (Category category : categories){
             if (category.getType().equals(request.getParameter("category"))){

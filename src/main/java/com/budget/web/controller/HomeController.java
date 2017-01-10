@@ -129,11 +129,7 @@ public class HomeController {
         Card card = new Card();
         card.setUser(user);
         card.setCardNumber(request.getParameter("cardNumber"));
-        if(request.getParameter("cash") != null){
-            card.setCash(Float.parseFloat(request.getParameter("cash")));
-        }else {
-            card.setCash(0);
-        }
+        card.setCash(0);
         user.addCard(card);
         cardService.saveCard(card);
         return mainPage(user, model);
