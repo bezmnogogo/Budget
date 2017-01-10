@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -62,6 +63,7 @@ public class CategoryController {
                 records.add(record);
             }
         }
+        Collections.sort(records, Record.getCompByDate());
         model.addAttribute("categories", categories);
         model.addAttribute("records", records);
         model.addAttribute("message", " по категории " + categoryService.getCategoryByid(category).getType());
