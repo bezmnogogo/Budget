@@ -38,6 +38,9 @@ public class CategoryService implements ICategoryService {
     @Override
     @Transactional
     public Category getCategoryByType(String type, long userId) {
+        if(categoryRepository.findByTypeAndUser(type,userId) == null){
+            return categoryRepository.findByTypeAndUser(type);
+        }
         return categoryRepository.findByTypeAndUser(type, userId);
     }
 

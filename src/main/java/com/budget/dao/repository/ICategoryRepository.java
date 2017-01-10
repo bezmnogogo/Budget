@@ -17,6 +17,9 @@ public interface ICategoryRepository extends JpaRepository<Category, Long> {
     @Query("SELECT DISTINCT c FROM Category c WHERE c.type = :type and c.user.id = :userId")
     Category findByTypeAndUser(@Param("type") String type, @Param("userId") long userId);
 
+    @Query("SELECT DISTINCT c FROM Category c WHERE c.type = :type and c.user.id is null")
+    Category findByTypeAndUser(@Param("type") String type);
+
     @Query("SELECT DISTINCT c FROM Category c WHERE c.user is null")
     List<Category> getStandartCategories();
 }
