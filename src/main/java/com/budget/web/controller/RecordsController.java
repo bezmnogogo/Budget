@@ -162,9 +162,9 @@ public class RecordsController {
         }
         int prevMounth = (intMounth == 0) ? (11) : (intMounth-1);
         int nextMounth = (intMounth == 11) ? (0) : (intMounth+1);
-        model.addAttribute("year", year);
         model.addAttribute("prevMounth", prevMounth);
         model.addAttribute("nextMounth", nextMounth);
+        model.addAttribute("year", year);
         model.addAttribute("mounth", mounth);
         model.addAttribute("records", records);
 

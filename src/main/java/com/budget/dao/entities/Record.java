@@ -110,6 +110,7 @@ public class Record extends GenericEntity{
         if(card != null){record += " номер карточки: " + card.getCardNumber();}
         record += " потрачено: " + sum;
         if(note != null){record += " заметки: " + note;}
+        record += " категория: " + this.category.getType();
         return record;
     }
 
