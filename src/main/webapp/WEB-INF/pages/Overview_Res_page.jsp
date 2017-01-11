@@ -7,7 +7,7 @@
 <html>
 <head>
 	<title>Обзор расходов</title>
-	<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css1/style.css"/>"/>
 </head>
 <body>
 <nav>
