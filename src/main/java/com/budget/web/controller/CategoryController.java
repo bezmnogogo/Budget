@@ -295,7 +295,8 @@ public class CategoryController {
             }
             categoryService.saveCategory(category);
             user.deleteCategoryById(deleteCategory.getId());
-            //categoryService.saveCategory(deleteCategory);
+            userService.saveCurrentUserWithDetailsUpdate(user);     ///////////////////////////////save user
+            categoryService.saveCategory(deleteCategory);
             categoryService.deleteCategoryById(deleteCategory.getId());
             model.addAttribute("categoryChangeMessage", "Категория удалена!");
         }
