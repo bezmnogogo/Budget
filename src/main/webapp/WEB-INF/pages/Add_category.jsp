@@ -7,7 +7,7 @@
 <html>
 <head>
 	<title>Добавить категорию</title>
-	<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/style.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
 <nav>

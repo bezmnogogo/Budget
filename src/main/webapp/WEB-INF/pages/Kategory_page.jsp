@@ -6,7 +6,7 @@
 <html>
 <head>
 	<title>Категории</title>
-	<link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/style.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>"/>
 </head>
 <body>
 <nav>
@@ -27,7 +27,7 @@
 	</ul>
 </section>
 <div >
-	<a href="" class="add_button kategory_add">Добавить +</a>
+	<a href="<c:url value="/categories/addCategory"/>" class="add_button kategory_add">Добавить +</a>
 </div>
 <div class="sort_mounth content ">
 	<div >
