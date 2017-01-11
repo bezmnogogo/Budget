@@ -186,7 +186,6 @@ public class CategoryController {
             model.addAttribute("mounth", mounthStr);
             model.addAttribute("records", null);
             model.addAttribute("intMounth", intMounth);
-            model.addAttribute("strCategory", categoryService.getCategoryByid(categoryId).getType());
         }
         List<Record> records = user.getRecordsByMounth(intMounth, year);
         List<Record> plannedRecords = user.getPlannedRecordsByMounth(intMounth, year);

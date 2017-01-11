@@ -35,9 +35,9 @@
 				</select>
 			</p>
 		</div>
-		<div class="period">
+		<div>
 			<p>Период повтора</p>
-			<select required name="period">
+			<select required name="period" class="period">
 				<option value="0">без повторений</option>
 				<option value="7">каждую неделю</option>
 				<option value="30">каждый месяц</option>
@@ -46,7 +46,7 @@
 		<div>
 			<p>
 				<select name="selectedCard"  class="selectedCard">
-					<option selected desabled>Выберите карту</option>
+					<option selected disabled>Выберите карту</option>
 					<c:forEach var="card" items="${cards}">
 						<option value="${card.getCardNumber()}">${card.getCardNumber()}</option>
 					</c:forEach>
@@ -59,7 +59,7 @@
 		</div>
 		<div class="count">
 			<p>Кол-во раз заплатить</p>
-			<input type="text" name="repeats" pattern="[1-9]{1,15}">
+			<input type="text" name="repeats" pattern="[0-9]{1,15}">
 		</div>
 		<div class="person_limit">
 			<p>Заметки</p>

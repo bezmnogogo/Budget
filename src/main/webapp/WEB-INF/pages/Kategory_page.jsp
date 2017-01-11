@@ -31,13 +31,13 @@
 </div>
 <div class="sort_mounth content ">
 	<div >
-		<a class="arrow_left" href="<c:url value="/categories/getRecordsByMounth/prev/${categoryId == null ? -1 : categoryId}/${year}/${prevMounth}"/> " name="arrow_left">предыдущий месяц</a>
+		<a class="arrow_left" href="<c:url value="/categories/getRecordsByMounth/prev/${categoryId == null ? -1 : categoryId}/${year}/${prevMounth}"/> " name="arrow_left"></a>
 	</div>
 	<div class="mounths">
 		<p>${mounth} ${year} год</p>
 	</div>
 	<div>
-		<a class="arrow_right" href="<c:url value="/categories/getRecordsByMounth/next/${categoryId == null ? -1 : categoryId}/${year}/${nextMounth}"/>" name="arrow_right">следующий месяц</a>
+		<a class="arrow_right" href="<c:url value="/categories/getRecordsByMounth/next/${categoryId == null ? -1 : categoryId}/${year}/${nextMounth}"/>" name="arrow_right"></a>
 	</div>
 </div>
 <section class="content pay_list content_over">

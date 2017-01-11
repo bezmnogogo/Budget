@@ -31,8 +31,8 @@
 	</div>
 </div>
 <p>
-<div>
-	<ul class="content content_over">
+<div >
+	<ul class="content fixed content_over">
 		<c:forEach var="record" items="${records}">
 			<c:choose>
 				<c:when test="${record.getPlanned() == true}">

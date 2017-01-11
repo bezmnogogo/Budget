@@ -18,7 +18,7 @@
 	<a href="<c:url value="/cards/getRecords/"/>">Расходы по карте</a>
 	<a href="<c:url value="/logout"/>">Выйти(${pageContext.request.userPrincipal.name})</a>
 </nav>
-<div class="content last_expenses">
+<div class="content last_expenses content_over">
 	<h2>Последние траты</h2>
 	<ul>
 		<c:forEach var="record" items="${records}">
@@ -52,17 +52,5 @@
 	</ul>
 	<a class="add_button" href="<c:url value="/addCard"/>" >Добавить карту+</a>
 </div>
-<div class="content for_parsing content_over">
-	<h2> Курсы валют</h2>
-	<ul>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ul>
-	<input type="file" value="Добавить файл для парсинга">
-</div>
-<footer></footer>
 </body>
 </html>
