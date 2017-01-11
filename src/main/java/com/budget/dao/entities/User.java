@@ -356,6 +356,16 @@ public class User implements UserDetails {
         }
     }
 
+    public void updateCategory(Category category){
+        for(Category category1 : usersCategories){
+            if(category1.getId() == category.getId()){
+                usersCategories.remove(category1);
+                usersCategories.add(category);
+                return;
+            }
+        }
+    }
+
     public void addCard(Card card){
         this.cards.add(card);
     }
@@ -371,5 +381,14 @@ public class User implements UserDetails {
 
     public void addUserCategory(Category category){
         this.usersCategories.add(category);
+    }
+
+    public void deleteCategoryById(long id){
+        for(Category category : usersCategories){
+            if(category.getId() == id){
+                usersCategories.remove(category);
+                return;
+            }
+        }
     }
 }

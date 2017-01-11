@@ -1,9 +1,11 @@
 package com.budget.web.controller;
 
 import com.budget.dao.entities.Category;
+import com.budget.dao.entities.PlannedRecord;
 import com.budget.dao.entities.Record;
 import com.budget.dao.entities.User;
 import com.budget.services.ICategoryService;
+import com.budget.services.IPlannedRecordService;
 import com.budget.services.IRecordService;
 import com.budget.services.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,12 +32,14 @@ public class CategoryController {
     private final ICategoryService categoryService;
     private final IRecordService recordService;
     private final IUserService userService;
+    private final IPlannedRecordService plannedRecordService;
 
     @Autowired
-    public CategoryController(ICategoryService categoryService, IRecordService recordService, IUserService userService) {
+    public CategoryController(ICategoryService categoryService, IRecordService recordService, IUserService userService, IPlannedRecordService plannedRecordService) {
         this.categoryService = categoryService;
         this.recordService = recordService;
         this.userService = userService;
+        this.plannedRecordService = plannedRecordService;
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/*")
@@ -245,5 +249,77 @@ public class CategoryController {
             model.addAttribute("addedMessage", " Категория добавлена!");
             return "Add_category";
         }
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/changeCategory/{categoryId}")
+    public String changeCategory(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap model, @PathVariable long categoryId){
+        if(user == null){return "login";}
+
+        Category category = categoryService.getCategoryByid(categoryId);
+
+        if(category.getType().equals("Без Категории")){
+            model.addAttribute("categoryChangeMessage", "Эту категорию нельзя менять!");
+            return categoriesPage(user, model);
+        }
+        model.addAttribute("category", category);
+        return "changeCategory";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/changeCategory")
+    public String changeCategory(@AuthenticationPrincipal User user, ModelMap model, HttpServletRequest request){
+        String delete = request.getParameter("clear_b");
+        String change = request.getParameter("repair_b");
+        long id = Long.parseLong(request.getParameter("id"));
+        if(delete != null){
+            Category category = categoryService.getCategoryByType("Без Категории", user.getId());
+            Category deleteCategory = categoryService.getCategoryByid(id);
+            for(Record record : deleteCategory.getRecords()){
+                category.addRecord(record);
+                deleteCategory.deleteRecordById(record.getId());
+                record.setCategory(category);
+                recordService.updateRecordCategoryId(record.getId(), category.getId());
+                user.updateRecord(record);
+            }
+            for(PlannedRecord plannedRecord : deleteCategory.getPlannedRecords()){
+                category.addPlannedRecords(plannedRecord);
+                deleteCategory.deletePlannedRecordById(plannedRecord.getId());
+                plannedRecord.setCategory(category);
+                plannedRecordService.updatePlannedRecord(plannedRecord.getId(),category.getId());
+                user.updatePlannedRecord(plannedRecord);
+            }
+            categoryService.saveCategory(category);
+            user.deleteCategoryById(deleteCategory.getId());
+            //categoryService.saveCategory(deleteCategory);
+            categoryService.deleteCategoryById(deleteCategory.getId());
+            model.addAttribute("categoryChangeMessage", "Категория удалена!");
+        }
+        if(change != null){
+            Category category = categoryService.getCategoryByid(id);
+            if(categoryService.getCategoryByType(request.getParameter("categoryName"),user.getId()) != null){
+                model.addAttribute("categoryExistMessage","такая категория уже существует!");
+                model.addAttribute("category", category);
+                return "changeCategory";
+            }
+            category.setType(request.getParameter("categoryName"));
+            user.updateCategory(category);
+            for(Record record : user.getRecords()){
+                if(record.getCategory().getId() == category.getId()){
+                    record.setCategory(category);
+                }
+            }
+
+            for(PlannedRecord plannedRecord : user.getPlannedRecords()){
+                if(plannedRecord.getCategory().getId() == category.getId()){
+                    plannedRecord.setCategory(category);
+                }
+            }
+            user.updateCategory(category);
+            categoryService.saveCategory(category);
+            model.addAttribute("categoryExistMessage","Категория изменена.");
+            model.addAttribute("category", category);
+            return "changeCategory";
+        }
+
+        return categoriesPage(user, model);
     }
 }

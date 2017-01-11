@@ -41,7 +41,13 @@ public class PlannedRecordService implements IPlannedRecordService{
     }
 
     @Override
+    @Transactional
     public void deletePlannedRecordById(long id) {
         plannedRecordRepository.delete(id);
+    }
+
+    @Override
+    public void updatePlannedRecord(long recordId, long categoryId) {
+        plannedRecordRepository.updateRecordCategory(recordId,categoryId);
     }
 }

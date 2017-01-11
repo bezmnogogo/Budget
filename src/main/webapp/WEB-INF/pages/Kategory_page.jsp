@@ -20,9 +20,10 @@
 </nav>
 <section class="category content_over content">
 	<h2>Категории:</h2>
+	<h3>${categoryChangeMessage}</h3>
 	<ul>
 		<c:forEach var="category" items="${categories}">
-			<li><a href="<c:url value="/categories/getRecords/${category.getId()}/${year}/${intMounth}"/> ">${category.getType()}</a></li>
+			<li><a href="<c:url value="/categories/getRecords/${category.getId()}/${year}/${intMounth}"/> ">${category.getType()}<a href="<c:url value="/categories/changeCategory/${category.getId()}"/> ">X</a></a></li>
 		</c:forEach>
 	</ul>
 </section>

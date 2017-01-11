@@ -1,5 +1,6 @@
 package com.budget.services;
 
+import com.budget.dao.entities.Category;
 import com.budget.dao.entities.Record;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface IRecordService {
 
     void deleteRecordById(long id);
 
+    void updateRecordCategoryId(long recordId, long category);
 }

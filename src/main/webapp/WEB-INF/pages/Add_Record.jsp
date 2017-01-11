@@ -18,7 +18,7 @@
 	<a href="<c:url value="/cards/getRecords/"/>">Расходы по карте</a>
 	<a href="<c:url value="/logout"/>">Выйти(${pageContext.request.userPrincipal.name})</a>
 </nav>
-<h1 class="a_h"> Добавление расходов</h1>
+<h1 class="a_h"> Добавление расходов</h1><h3>${addedMessage}</h3>
 <form method="post" action="<c:url value="/records/addPaidRecord"/> ">
 	<div class="r_block">
 		<p>Сумма</p>

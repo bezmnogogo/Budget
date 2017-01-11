@@ -17,4 +17,6 @@ public interface IPlannedRecordService {
 
     void deletePlannedRecordById(long id);
 
+    void updatePlannedRecord(long recordId, long categoryId);
+
 }

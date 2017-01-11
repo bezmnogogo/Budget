@@ -291,6 +291,7 @@ public class RecordsController {
                 user.getPlannedRecordById(id).getCategory().deletePlannedRecordById(id);  //clear category
             user.deletePlannedRecordById(id); //clear user
             plannedRecordService.deletePlannedRecordById(id);  //delete record
+            model.addAttribute("addedMessage","Расход удален.");
         }
         if(change != null){
             Date date = Date.valueOf(request.getParameter("recordDate"));

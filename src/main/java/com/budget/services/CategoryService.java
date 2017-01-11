@@ -51,7 +51,14 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
+    @Transactional
     public List<Category> getStandartCategories() {
         return categoryRepository.getStandartCategories();
+    }
+
+    @Override
+    @Transactional
+    public void deleteCategoryById(long id) {
+        categoryRepository.delete(id);
     }
 }

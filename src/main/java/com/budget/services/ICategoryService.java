@@ -17,4 +17,6 @@ public interface ICategoryService {
     void saveCategory(Category category);
 
     List<Category> getStandartCategories();
+
+    void deleteCategoryById(long id);
 }

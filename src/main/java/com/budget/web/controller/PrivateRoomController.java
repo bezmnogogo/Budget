@@ -47,10 +47,10 @@ public class PrivateRoomController {
         return "";
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/action/{action}")
-    public String changeUserData(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap modelMap, @PathVariable("action") String action){
+    @RequestMapping(method = RequestMethod.POST, value = "/action")
+    public String changeUserData(@AuthenticationPrincipal User user, HttpServletRequest request, ModelMap modelMap){
         String message = null;
-        switch (action){
+        switch (request.getParameter("action")){
             case "changeUsername":
                 if(userService.checkIfUserExists(request.getParameter("p_name"))){
                     message = "Пользователь с таким логином существует";
