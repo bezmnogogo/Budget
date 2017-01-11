@@ -50,6 +50,10 @@ nav a:last-child{
 	background-color: #f7f7f7;
 }
 
+.content_over{
+	overflow: auto;
+}
+
 .last_expenses{
 	width:60%;
 	height:400px;
@@ -127,22 +131,35 @@ h2{
 }
 
 .category{
-	width:200px;
+	margin-left:0;
+	width:285px;
 	height:600px;
 	float:left;
 	margin-top: 3%; 
+	border:1px solid black;
 }
 
 .category ul{
 	font-size:20px;
+	padding-left:0;
+}
+
+.category li a{
+	color:black;
 }
 
 .category li{
-	margin-top: 20%;
+	list-style-type: none;
+	border-bottom:1px solid black;
+	height: 50px;
+	line-height: 50px;
 
 }
 
 
+.category li:hover{
+	background:grey;
+}
 /*See_pay_page*/
 .about_list li,
 .input_list li{
@@ -450,3 +467,73 @@ input[type="submit"]{
     left: 16px;
 }
 
+
+.sort_mounth{
+	width:60%;
+	height:100px;
+	margin-left:6%;
+	margin-top:3%;
+	border:1px solid black;
+	border-radius: 20px;
+	display: inline-block;
+}
+
+.arrow_left{
+	width:90px;
+	height:90px;
+	float:left;
+	margin-top:0.5%;
+	margin-left: 3%;
+	border-radius: 50px;
+	background-image: url(../image/left.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.arrow_right{
+	width:90px;
+	height:90px;
+	float:right;
+	margin-top:0.5%;
+	margin-right: 3%;
+	border-radius: 50px;
+	background-image: url(../image/right.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.mounths{
+	float:left;
+	border:1px solid black;
+	width:75%;
+	height:55px;
+	margin-top: 20px;
+	margin-left: 1%;
+}
+
+.add_button{
+	width:120px;
+	height:30px;
+	font-size:20px;
+	color:white;
+	text-decoration: none;
+	text-align: center;
+	font-style: italic;
+	border:1px solid black;
+	background-color: #187ec0;
+	border-radius: 40px;
+}
+.kategory_add{
+	position:absolute;
+	top:760px;
+	left:20px;
+}
+
+
+.category li a{
+	text-decoration: none;
+}
+
+input:focus{
+	outline:none;
+}
