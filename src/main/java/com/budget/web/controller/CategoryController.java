@@ -256,8 +256,14 @@ public class CategoryController {
         if(user == null){return "login";}
 
         Category category = categoryService.getCategoryByid(categoryId);
+        boolean exist = false;
+        for(Category category1 : categoryService.getStandartCategories()){
+            if(category1.getId() == category.getId()){
+                exist = true;
+            }
+        }
 
-        if(category.getType().equals("Без Категории")){
+        if(exist){
             model.addAttribute("categoryChangeMessage", "Эту категорию нельзя менять!");
             return categoriesPage(user, model);
         }
