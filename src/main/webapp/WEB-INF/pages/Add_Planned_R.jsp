@@ -23,7 +23,7 @@
 	<form method="post" action="<c:url value="/records/addPlannedRecord"/> ">
 		<div class="sum">
 			<p>Сумма</p>
-			<input type="text" name="sum" pattern="[0-9]{1,10}">
+			<input type="text" name="sum" pattern="[0-9]{1,10}" required>
 		</div>
 		<div>
 			<p>
@@ -59,7 +59,7 @@
 		</div>
 		<div class="count">
 			<p>Кол-во раз заплатить</p>
-			<input type="text" name="repeats" pattern="[0-9]{1,15}">
+			<input type="text" name="repeats" pattern="[0-9]{1,15}" required>
 		</div>
 		<div class="person_limit">
 			<p>Заметки</p>
