@@ -14,7 +14,7 @@ footer{
 	margin-left: -11px;
 	height:40px;
 	border-radius: 20px 20px 0 0;
-	background-color:#187ec0;
+	background-color:#187ec0; 
 }
 
 nav {
@@ -28,11 +28,11 @@ nav a{
 	margin-right: 50px;
 	font-size:22px;
 	text-decoration: none;
-	margin-top: 13px;
+	margin-top: 13px; 
 }
 
 nav a:first-child{
-	margin-top: 13px;
+	margin-top: 13px; 
 	margin-left: 17%;
 }
 
@@ -68,6 +68,7 @@ nav a:last-child{
 .information{
 	float:right;
 	position:absolute;
+	margin-top: 110px;
 	left:1230px;
 	width:20%;
 }
@@ -97,11 +98,11 @@ nav a:last-child{
 }
 
 .for_parsing>h2{
-	padding-left:18%;
+	padding-left:18%; 
 }
 
 .information>h2{
-	padding-left:17%;
+	padding-left:17%;	
 }
 
 h2{
@@ -123,12 +124,12 @@ h2{
 /*Kategory_page*/
 
 .pay_list{
-
+	
 	width:60%;
 	height:400px;
 	float:left;
 	margin-left: 6%;
-	margin-top: 3%;
+	margin-top: 3%; 
 }
 
 .category{
@@ -136,7 +137,7 @@ h2{
 	width:285px;
 	height:600px;
 	float:left;
-	margin-top: 3%;
+	margin-top: 3%; 
 	border:1px solid black;
 }
 
@@ -233,6 +234,7 @@ p{
 main{
 	border:1px solid black;
 	width:32.5%;
+	height:500px;
 	float:left;
 	margin-top: 5%;
 	margin-left: 5px;
@@ -311,7 +313,7 @@ input[type="submit"]{
 	font-style: italic;
 	margin-bottom: 5%;
 	margin-top: 5%;
-	margin-left: 3%;
+	margin-left: 3%;	
 }
 
 .box+footer{
@@ -324,7 +326,7 @@ input[type="submit"]{
 	list-style-type: none;
 	width:20%;
 	font-size: 30px;
-
+	
 }
 
 .about_planed_list{
@@ -380,7 +382,7 @@ input[type="submit"]{
 }
 
 .sub_button{
-	width:350px;
+	width:30%;
 	margin-left: 15%;
 }
 
@@ -391,17 +393,17 @@ input[type="submit"]{
 
 .i_h{
 	margin-left:17%;
-	font-size: 40px;
+	font-size: 40px;	
 }
 
 .a_h{
 	margin-left:14%;
-	font-size: 40px;
+	font-size: 40px;	
 }
 
 .k_h{
 	margin-left:27%;
-	font-size: 40px;
+	font-size: 40px;	
 }
 
 /**Person_page**/
@@ -461,17 +463,17 @@ input[type="submit"]{
 
 .content_ux{
 	border: 1px solid black;
-	border-radius: 20px;
-	box-shadow: -3px 5px 20px rgba(0,0,0,0.5);
-	float: left;
-	margin-top: 3%;
-	margin-left: 14%;
-	background-color: #f7f7f7;
-	width: 19%;
-	height: 44px;
-	position: absolute;
-	top: 140px;
-	left: 16px;
+    border-radius: 20px;
+    box-shadow: -3px 5px 20px rgba(0,0,0,0.5);
+    float: left;
+    margin-top: 3%;
+    margin-left: 14%;
+    background-color: #f7f7f7;
+    width: 19%;
+    height: 44px;
+    position: absolute;
+    top: 140px;
+    left: 16px;
 }
 
 
@@ -492,7 +494,7 @@ input[type="submit"]{
 	margin-top:0.5%;
 	margin-left: 3%;
 	border-radius: 50px;
-	background-image: url(../image/left.jpg);
+	background-image: url(../image/left.jpg/);
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -504,7 +506,7 @@ input[type="submit"]{
 	margin-top:0.5%;
 	margin-right: 3%;
 	border-radius: 50px;
-	background-image: url(../image/right.jpg);
+	background-image: url(../image/right.jpg/);
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -552,13 +554,13 @@ input:focus{
 }
 
 .wrapper {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .footer {
-	flex: 0 0 auto;
+  flex: 0 0 auto;
 }
 
 .period{
@@ -571,3 +573,55 @@ input:focus{
 	float:left;
 	margin-left: 20px;
 }
+
+
+.not_marg{
+	margin-left: 0;
+}
+
+.m_b1{
+	margin-left:260px;
+	margin-top: 10px;
+}
+
+.m_b2{
+	margin-left:260px;
+	margin-top: 10px;
+}
+
+.m_b3{
+	margin-left:1490px;
+	margin-top: -460px;
+}
+
+.but_reg{
+	width:14%;
+	height:40px;
+	border-radius: 15px;
+	margin-right: 19%;
+	background-color: #187ec0;
+	color:white;
+	font-size:24px;
+	margin-right: 0;
+	text-align: center;
+	text-decoration: none;
+	position:absolute;
+	top:360px;
+	padding-top: 2px;
+}
+
+.but_avt{
+	padding-top: 2px;
+	width:14%;
+	height:40px;
+	border-radius: 15px;
+	background-color: #187ec0;
+	color:white;
+	font-size:24px;
+	margin-right: 0;
+	text-align: center;
+	text-decoration: none;
+	position:absolute;
+	top:435px;
+}
+
