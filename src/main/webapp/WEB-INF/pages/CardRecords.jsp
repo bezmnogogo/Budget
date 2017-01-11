@@ -20,33 +20,34 @@
 	<a href="<c:url value="/logout"/>">Выйти(${pageContext.request.userPrincipal.name})</a>
 </nav>
 <form method="post" action="<c:url value="/cards/getRecords/"/> ">
-	<h1>Расход по карте</h1>
-	<select name="selectedCard" class="content_ux">
-		<c:choose>
-			<c:when test="${selectedCard != null}">
-				<option desabled>Выберите карту</option>
-			</c:when>
-			<c:otherwise>
-				<option selected desabled>Выберите карту</option>
-			</c:otherwise>
-		</c:choose>
-		<c:forEach var="card" items="${cards}">
+	<h1 class="k_h">Расход по карте</h1>
+	<div class="r_block">
+		<select name="selectedCard" class="content_ux">
 			<c:choose>
-				<c:when test="${card.getCardNumber() == selectedCard}">
-					<option selected value="${card.getCardNumber()}">${card.getCardNumber()}</option>
+				<c:when test="${selectedCard != null}">
+					<option desabled>Выберите карту</option>
 				</c:when>
 				<c:otherwise>
-					<option value="${card.getCardNumber()}">${card.getCardNumber()}</option>
+					<option selected desasled>Выберите карту</option>
 				</c:otherwise>
 			</c:choose>
-		</c:forEach>
-	</select>
-	<div class="r_block">
+			<c:forEach var="card" items="${cards}">
+				<c:choose>
+					<c:when test="${card.getCardNumber() == selectedCard}">
+						<option selected value="${card.getCardNumber()}">${card.getCardNumber()}</option>
+					</c:when>
+					<c:otherwise>
+						<option value="${card.getCardNumber()}">${card.getCardNumber()}</option>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+		</select>
 		<input type="month" value="2017-01" name="date">
 		<input type="submit" value="показать">
 	</div>
 	<c:if test="${records != null}">
-		<h2>Расходы по карте за ${mounth} ${year} года по карте ${cardNumber}</h2>
+	<h2>Расходы по карте за ${mounth} ${year} года по карте ${cardNumber}</h2>
+	<ul class="content">
 		<c:forEach var="record" items="${records}">
 			<c:choose>
 				<c:when test="${record.getPlanned() == true}">
@@ -57,7 +58,8 @@
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-	</c:if>
+		</c:if>
+	</ul>
 </form>
 <footer></footer>
 </body>

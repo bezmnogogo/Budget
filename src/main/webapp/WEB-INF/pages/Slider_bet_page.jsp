@@ -19,31 +19,33 @@
 	<a href="<c:url value="/cards/getRecords/"/>">Расходы по карте</a>
 	<a href="<c:url value="/logout"/>">Выйти(${pageContext.request.userPrincipal.name})</a>
 </nav>
-<div class="slider">
-	<div class="arrow_left">
-		<a href="<c:url value="/records/getRecordsByMounth/prev/${year}/${prevMounth}"/> " name="arrow_left">предыдущий месяц</a>
+<div class="sort_mounth content ">
+	<div >
+		<a class="arrow_left" href="<c:url value="/records/getRecordsByMounth/prev/${year}/${prevMounth}"/> " name="arrow_left"></a>
 	</div>
 	<div class="mounths">
 		<p>${mounth} ${year} год</p>
 	</div>
-
-	<div class="arrow_right">
-		<a href="<c:url value="/records/getRecordsByMounth/next/${year}/${nextMounth}"/>" name="arrow_right">следующий месяц</a>
+	<div>
+		<a class="arrow_right" href="<c:url value="/records/getRecordsByMounth/next/${year}/${nextMounth}"/>" name="arrow_right"></a>
 	</div>
 </div>
 <p>
-<ul>
-	<c:forEach var="record" items="${records}">
-		<c:choose>
-			<c:when test="${record.getPlanned() == true}">
-				<li><a href="<c:url value="/records/getRecord/1/${record.getId()}"/> ">${record.toString()}</a></li>
-			</c:when>
-			<c:otherwise>
-				<li><a href="<c:url value="/records/getRecord/0/${record.getId()}"/> ">${record.toString()}</a></li>
-			</c:otherwise>
-		</c:choose>
-	</c:forEach>
-</ul>
+<div>
+	<ul class="content content_over">
+		<c:forEach var="record" items="${records}">
+			<c:choose>
+				<c:when test="${record.getPlanned() == true}">
+					<li><a href="<c:url value="/records/getRecord/1/${record.getId()}"/> ">${record.toString()}</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="<c:url value="/records/getRecord/0/${record.getId()}"/> ">${record.toString()}</a></li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+	</ul>
+</div>
 </p>
 </body>
 </html>
+

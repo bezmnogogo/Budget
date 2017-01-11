@@ -23,12 +23,12 @@
 	<form method="post" action="<c:url value="/records/addPlannedRecord"/> ">
 		<div class="sum">
 			<p>Сумма</p>
-			<input type="text" name="sum" patern="[1-9]">
+			<input type="text" name="sum" pattern="[0-9]{1,10}">
 		</div>
 		<div>
 			<p>
 				<select required name="selectedCategory" class="sel_cat">
-					<option selected disabled>Выберите категорию</option>
+					<option selected disabled value="">Выберите категорию</option>
 					<c:forEach var="category" items="${categories}">
 						<option value="${category.getType()}">${category.getType()}</option>
 					</c:forEach>
@@ -59,7 +59,7 @@
 		</div>
 		<div class="count">
 			<p>Кол-во раз заплатить</p>
-			<input type="text" name="repeats" pattern="[1-9]">
+			<input type="text" name="repeats" pattern="[1-9]{1,15}">
 		</div>
 		<div class="person_limit">
 			<p>Заметки</p>
@@ -68,6 +68,5 @@
 		<input type="submit" name="add_button" value="Добавить">
 	</form>
 </div>
-<footer></footer>
 </body>
 </html>

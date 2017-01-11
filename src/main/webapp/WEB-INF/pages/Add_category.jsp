@@ -28,7 +28,7 @@
 		<c:if test="${addedMessage != null}">
 			<h3>${addedMessage}</h3>
 		</c:if>
-		<input type="text" name="category" placeholder="Введите новую категорю" patern="[a-zA-Z]([a-zA-Z0-9]{1,15})" required>
+		<input type="text" name="category" placeholder="Введите новую категорю" pattern="[a-zA-Z]([a-zA-Z0-9]{1,15})" required>
 		<input type="submit" name="add_cat" value="Добавить">
 	</div>
 </form>

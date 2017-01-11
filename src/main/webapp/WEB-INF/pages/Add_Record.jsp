@@ -22,7 +22,7 @@
 <form method="post" action="<c:url value="/records/addPaidRecord"/> ">
 	<div class="r_block">
 		<p>Сумма</p>
-		<input type="text" name="sum" pattern="[0-9]">
+		<input type="text" name="sum" pattern="[0-9]{1,10}">
 	</div>
 	<div class="r_block">
 		<p>Дата</p>
@@ -30,7 +30,7 @@
 	</div>
 	<div class="r_block">
 		<select required name="selectedCategory">
-			<option selected disabled>Выберите категорию</option>
+			<option selected disabled value="">Выберите категорию</option>
 			<c:forEach var="category" items="${categories}">
 				<option value="${category.getType()}">${category.getType()}</option>
 			</c:forEach>

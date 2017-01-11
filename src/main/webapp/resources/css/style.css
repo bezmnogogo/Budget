@@ -9,7 +9,7 @@ textarea{
 }
 
 footer{
-	margin-top: 45%;
+	margin-top: 3%;
 	width:101%;
 	margin-left: -11px;
 	height:40px;
@@ -41,6 +41,7 @@ nav a:last-child{
 }
 
 .content{
+	height:350px;
 	border:1px solid black;
 	border-radius:20px;
 	box-shadow: -3px 5px 20px rgba(0,0,0,0.5);
@@ -187,7 +188,7 @@ h2{
 
 .input_list{
 	position:absolute;
-	top:218px;
+	top:192px;
 	right:870px;
 }
 
@@ -277,6 +278,7 @@ main p{
 /** Add_Planned_R**/
 .box{
 	width:50%;
+	height:138%;
 	margin-left: 23%;
 }
 
@@ -449,6 +451,11 @@ input[type="submit"]{
 	margin-left:10%;
 }
 
+.r_block input[type="submit"]
+{
+	margin-left:450px;
+	margin-top: 0;
+}
 
 
 
@@ -485,7 +492,7 @@ input[type="submit"]{
 	margin-top:0.5%;
 	margin-left: 3%;
 	border-radius: 50px;
-	background-image: url(../bootstrap/image/left.jpg);
+	background-image: url(../image/left.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -497,7 +504,7 @@ input[type="submit"]{
 	margin-top:0.5%;
 	margin-right: 3%;
 	border-radius: 50px;
-	background-image: url(../bootstrap/image/right.jpg);
+	background-image: url(../image/right.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
 }
@@ -509,6 +516,8 @@ input[type="submit"]{
 	height:55px;
 	margin-top: 20px;
 	margin-left: 1%;
+	font-size: 25px;
+	text-align: center;
 }
 
 .add_button{
@@ -536,4 +545,29 @@ input[type="submit"]{
 
 input:focus{
 	outline:none;
+}
+
+.body{
+	height:100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.footer {
+  flex: 0 0 auto;
+}
+
+.period{
+	width:250px;
+	height:35px;
+	border-radius: 20px;
+}
+
+.fixed{
+	float:left;
+	margin-left: 20px;
 }
