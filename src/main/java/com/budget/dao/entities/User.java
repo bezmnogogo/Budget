@@ -243,8 +243,9 @@ public class User implements UserDetails {
                 if(record.getRecordDate().getMonth() == mounth && Integer.parseInt(record.getRecordDate().toString().substring(0,4)) == year1)
                     mounthRecords.add(record);
             }
+            int m = Integer.parseInt(plannedRecord.getStartDate().toString().substring(8));
             if(plannedRecord.getDayPosition() == 7){
-                for(int i = 0, day = plannedRecord.getStartDate().getDay() + 1, mounth1 = plannedRecord.getStartDate().getMonth(), year = plannedRecord.getStartDate().getYear(); i < plannedRecord.getRepeatsCount(); i++){
+                for(int i = 0, day = m, mounth1 = plannedRecord.getStartDate().getMonth(), year = plannedRecord.getStartDate().getYear(); i < plannedRecord.getRepeatsCount(); i++){
                     Record record = new Record();
                     String date = plannedRecord.getStartDate().toString().substring(0,8);
                     if(plannedRecord.getCard() != null){record.setCard(plannedRecord.getCard());}
@@ -262,11 +263,11 @@ public class User implements UserDetails {
                         mounthRecords.add(record);
                     day += 7;
                     if(day > mounthMap.get(mounth1)){
-                        if(mounth1 + 1 > 12){
+                        if(mounth1 + 1 == 12){
                             year++;
                         }
                         day %= mounthMap.get(mounth1);
-                        mounth1 = (mounth1 + 1 < 12) ? mounth1 + 1 : (mounth1 + 1)%11;
+                        mounth1 = (mounth1 + 1 == 12) ? 0 : mounth1 + 1;
                     }
                 }
             }
@@ -289,7 +290,7 @@ public class User implements UserDetails {
                     if(mounth1 + 1 >= 12){
                         year++;
                     }
-                    mounth1 = (mounth1 + 1 <= 12) ? mounth1 + 1 : (mounth1 + 1)%12;
+                    mounth1 = ((mounth1 + 1) == 12) ? 0 : mounth1 + 1;
                 }
             }
         }
