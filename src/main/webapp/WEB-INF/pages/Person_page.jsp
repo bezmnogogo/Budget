@@ -40,7 +40,7 @@
 <form method="post" action="<c:url value="/privateRoom/action"/> ">
 	<div class="person_limit">
 		<p>Лимит</p>
-		<input type="text" name="p_limit" value="${user.mounthlyLimit}" pattern="[0-9]{1,10}">
+		<input type="text" name="p_limit" value="${user.mounthlyLimit}" pattern="[0-9]{0,10}(\.[0-9]{2})?">
 		<input type="hidden" name="action" value="changeLimit">
 		<button type="submit">Изменить</button>
 	</div>
