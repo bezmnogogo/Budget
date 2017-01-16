@@ -7,7 +7,7 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="<c:url value="/resources/css1/style.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css2/style.css"/>"/>
 </head>
 <body>
 <nav>
@@ -32,7 +32,7 @@
 <form method="post" action="<c:url value="/privateRoom/action"/> ">
 	<div class="person_email">
 		<p>E-mail</p>
-		<input type="e-mail" name="p_email" value="${user.mail}">
+		<input type="e-mail" name="p_email" value="${user.mail}" pattern="^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(.com)$">
 		<input type="hidden" name="action" value="changeMail">
 		<button type="submit">Изменить</button>
 	</div>

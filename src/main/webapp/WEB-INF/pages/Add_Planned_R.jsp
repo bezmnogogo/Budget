@@ -6,7 +6,7 @@
 <html>
 <head>
 	<title></title>
-	<link rel="stylesheet" href="<c:url value="/resources/css1/style.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css2/style.css"/>"/>
 </head>
 <body>
 <nav>
@@ -23,7 +23,7 @@
 	<form method="post" action="<c:url value="/records/addPlannedRecord"/> ">
 		<div class="sum">
 			<p>Сумма</p>
-			<input type="text" name="sum" pattern="[0-9]{1,10}" required>
+			<input type="text" name="sum" pattern="[0-9]{0,10}(\.[0-9]{2})?" required>
 		</div>
 		<div>
 			<p>

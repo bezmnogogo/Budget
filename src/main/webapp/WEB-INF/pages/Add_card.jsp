@@ -7,7 +7,7 @@
 <html>
 <head>
 	<title>Добавить карту</title>
-	<link rel="stylesheet" href="<c:url value="/resources/css1/style.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css2/style.css"/>"/>
 </head>
 <body>
 <nav>
@@ -22,7 +22,7 @@
 <form method="post" action="<c:url value="/addCard"/> ">
 	<div class="r_block">
 		<h1>Добавить карту</h1>
-		<input type="number" name="cardNumber" placeholder="Введите номер карты" pattern="[0-9]{16}" required>
+		<input type="text" name="cardNumber" placeholder="Введите номер карты" pattern="([0-9]{16})" required>
 		<input type="submit" name="add_kard" value="Добавить">
 	</div>
 </form>

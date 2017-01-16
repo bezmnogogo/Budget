@@ -7,7 +7,7 @@
 <html>
 <head>
 	<title>Просмотр запланированных расходов</title>
-	<link rel="stylesheet" href="<c:url value="/resources/css1/style.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css2/style.css"/>"/>
 </head>
 <body>
 <header>

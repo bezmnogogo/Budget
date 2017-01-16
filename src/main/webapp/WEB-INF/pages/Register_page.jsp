@@ -7,7 +7,7 @@
 <html>
 <head>
 	<title>Регистрация</title>
-	<link rel="stylesheet" href="<c:url value="/resources/css1/style.css"/>"/>
+	<link rel="stylesheet" href="<c:url value="/resources/css2/style.css"/>"/>
 </head>
 <body>
 <h1> Регистрация пользователя </h1>
@@ -22,8 +22,9 @@
 	<div class="r_block">
 		<input type="password" name="password" placeholder="Введите пароль" maxlength="15" required>
 	</div>
-	<div class="sub_button">
-		<input type="submit" value="registrate">
+	<div class="sub_button not_marg">
+		<input type="submit" value="Регистрация">
+		<a class="but_avt" href="<c:url value="/login"/>" >Авторизация</a>
 	</div>
 </form>
 </body>

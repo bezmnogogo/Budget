@@ -606,7 +606,7 @@ input:focus{
 	text-align: center;
 	text-decoration: none;
 	position:absolute;
-	top:360px;
+	top:330px;
 	padding-top: 2px;
 }
 
@@ -622,6 +622,34 @@ input:focus{
 	text-align: center;
 	text-decoration: none;
 	position:absolute;
-	top:435px;
+	top:250px;
+
 }
 
+.two_button{
+	width:30%;
+	height:30px;
+	border-radius: 15px;
+	margin-right: 19%;
+	background-color: #187ec0;
+	color:white;
+	font-size:20px;
+	font-style: italic;
+}
+
+
+.change_button button{
+	width:30%;
+	height:30px;
+	border-radius: 15px;
+	margin-right: 4%;
+	background-color: #187ec0;
+	color:white;
+	font-size:20px;
+	font-style: italic;
+}
+
+
+.r_block #cat_text{
+	margin-left: 0;
+}
