@@ -13,8 +13,8 @@ import java.util.List;
  */
 public interface ICardRepository extends JpaRepository<Card, Long> {
 
-    @Query("SELECT DISTINCT c FROM Card c WHERE c.cardNumber = :cardNumber")
-    Card findByCardNumber(@Param("cardNumber") String cardNumber);
+    @Query("SELECT DISTINCT c FROM Card c WHERE c.cardNumber = :cardNumber and c.user.id = :userId")
+    Card findByCardNumber(@Param("cardNumber") String cardNumber, @Param("userId") long userId);
 
     @Query("SELECT DISTINCT c FROM Card c where c.user.id = :user")
     List<Card> findCardByUserId(@Param("user") long user);

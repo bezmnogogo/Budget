@@ -68,7 +68,7 @@ public class RecordsController {
         Category category = categoryService.getCategoryByType(request.getParameter("selectedCategory"), user.getId());
 
         if(request.getParameter("selectedCard") != null){
-            record.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
+            record.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard"), user.getId()));
             //record.setCard(user.getCardByNumber(request.getParameter("selectedCard")));
         }
 
@@ -125,7 +125,7 @@ public class RecordsController {
         plannedRecord.setStartDate(date);
         plannedRecord.setRepeatsCount(Integer.parseInt(request.getParameter("repeats")));
         if(request.getParameter("selectedCard") != null){
-            plannedRecord.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
+            plannedRecord.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard"), user.getId()));
             //plannedRecord.setCard(user.getCardByNumber(request.getParameter("selectedCard")));
         }
         plannedRecord.setNote(request.getParameter("text"));
@@ -261,7 +261,7 @@ public class RecordsController {
             record.setNote(request.getParameter("text"));
             record.setSum(Float.valueOf(request.getParameter("sum")));
             if(request.getParameter("selectedCard") != null){
-                record.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
+                record.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard"), user.getId()));
                 //record.setCard(user.getCardByNumber(request.getParameter("selectedCard")));
             }
 
@@ -304,7 +304,7 @@ public class RecordsController {
             plannedRecord.setDayPosition(Integer.valueOf(request.getParameter("period")));
             plannedRecord.setStartDate(date);
             if(request.getParameter("selectedCard") != null){
-                plannedRecord.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard")));
+                plannedRecord.setCard(cardService.getCardByCardNumber(request.getParameter("selectedCard"), user.getId()));
                 //plannedRecord.setCard(user.getCardByNumber(request.getParameter("selectedCard")));
             }
             plannedRecord.setNote(request.getParameter("text"));

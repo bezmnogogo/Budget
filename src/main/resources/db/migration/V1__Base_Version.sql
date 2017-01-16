@@ -74,7 +74,7 @@ CREATE TABLE `records` (
   `user_id` bigint(20) NOT NULL,
   `cards_id` bigint(20) DEFAULT NULL,
   `places_id` bigint(20) DEFAULT NULL,
-  `sum` decimal(20,0) NOT NULL,
+  `sum` float NOT NULL,
   `categories_id` bigint(20) NOT NULL,
   `note` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`,`user_id`),

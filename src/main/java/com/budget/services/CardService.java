@@ -31,8 +31,8 @@ public class CardService implements ICardService{
 
     @Override
     @Transactional
-    public Card getCardByCardNumber(String number) {
-        return cardRepository.findByCardNumber(number);
+    public Card getCardByCardNumber(String number, long userId) {
+        return cardRepository.findByCardNumber(number, userId);
     }
 
     @Override
